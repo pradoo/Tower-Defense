@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+     android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/new_game"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
+        android:text="New Game"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/keepgoing"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/new_game"
+        android:layout_marginTop="50dp"
+        android:text="Continue"
+        android:textSize="20sp" />
+
+</RelativeLayout>
