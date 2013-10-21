@@ -10,7 +10,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="75dp"
-        android:text="New Game"
+        android:text="@string/new_game"
         android:textSize="20sp" />
 
     <Button
@@ -19,7 +19,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/new_game"
         android:layout_marginTop="50dp"
-        android:text="Continue"
+        android:text="@string/load_game"
         android:textSize="20sp" />
 
 </RelativeLayout>
