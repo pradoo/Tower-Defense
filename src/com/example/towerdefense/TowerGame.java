@@ -1,5 +1,7 @@
 package com.example.towerdefense;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -8,6 +10,7 @@ public class TowerGame extends Activity {
 	
 	private BoardView board;
 	private TowerGameLogic mGame;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +19,8 @@ public class TowerGame extends Activity {
 		mGame = new TowerGameLogic();
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
+		
+		
 	}
 
 	@Override

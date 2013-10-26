@@ -16,7 +16,7 @@
     <com.example.towerdefense.TowerInfoView
         android:id="@+id/towerinfo"
         android:layout_width="0dp"
-        android:layout_height="100dp" 
-        android:layout_weight=".2"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20" />
 
 </LinearLayout>
