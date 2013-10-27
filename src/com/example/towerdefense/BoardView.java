@@ -1,5 +1,7 @@
 package com.example.towerdefense;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,6 +40,17 @@ public class BoardView extends View{
 	public void setGame(TowerGameLogic game) {
 		mGame = game;
 	}	
+	
+	
+	public int getBoardCellWidth() {
+		return getWidth() / BOARD_WIDTH;
+	}
+
+
+	public int getBoardCellHeight() {
+		return getHeight() / BOARD_HEIGHT;
+	}
+
 
 
 	@Override
@@ -66,7 +79,13 @@ public class BoardView extends View{
 	}
 	
 	public void drawEnemies(Canvas canvas){
-		
+		mPaint.setColor(Color.BLACK);        
+		mPaint.setStrokeWidth(5);
+		ArrayList<EnemyCircle> enemies = mGame.getEnemies();
+		for(int i = 0; i < enemies.size(); ++i){
+			EnemyCircle temp = enemies.get(i);
+			canvas.drawCircle(temp.getXpos(), temp.getYpos(), temp.getRadius(), mPaint);
+		}
 	}
 
 }
