@@ -6,7 +6,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class BoardView extends View{
@@ -16,21 +19,39 @@ public class BoardView extends View{
 
 	public static final int BOARD_WIDTH = 9;
 	public static final int BOARD_HEIGHT = 7;
+	
+	
+	private static final String TAG = "BoardView";
+
+	private static final int STOPPED = 0;
+	private static final int RUNNING = 1;
+
+	private long prevTime = System.currentTimeMillis();
+	private long startTime = System.currentTimeMillis();
+	private int frameCount;
+	private int mode;
+	
+	private int moveDelay = 10;
+
+
 
 	public BoardView(Context context) {
 		super(context);
 		initialize();
+		mode = RUNNING;
 		// TODO Auto-generated constructor stub
 	}
 
 	public BoardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initialize();
+		mode = RUNNING;
 	}
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initialize();
+		mode = RUNNING;
 	}
 
 	public void initialize() {   
@@ -40,8 +61,8 @@ public class BoardView extends View{
 	public void setGame(TowerGameLogic game) {
 		mGame = game;
 	}	
-	
-	
+
+
 	public int getBoardCellWidth() {
 		return getWidth() / BOARD_WIDTH;
 	}
@@ -77,7 +98,7 @@ public class BoardView extends View{
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
 	}
-	
+
 	public void drawEnemies(Canvas canvas){
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
@@ -85,6 +106,55 @@ public class BoardView extends View{
 		for(int i = 0; i < enemies.size(); ++i){
 			EnemyCircle temp = enemies.get(i);
 			canvas.drawCircle(temp.getXpos(), temp.getYpos(), temp.getRadius(), mPaint);
+		}
+	}
+
+	private RefreshHandler mRedrawHandler = new RefreshHandler();
+
+	class RefreshHandler extends Handler {
+
+		@Override
+		public void handleMessage(Message msg) {
+			BoardView.this.update();
+			BoardView.this.invalidate();
+		}
+
+		public void sleep(long delayMillis) {
+			this.removeMessages(0);
+			sendMessageDelayed(obtainMessage(0), delayMillis);
+		}
+	}
+
+	public void update() {
+		// TODO Auto-generated method stub
+
+		if (mode == RUNNING) {
+			//handleFrameRateChecks();
+			long now = System.currentTimeMillis();
+			if (now - prevTime > moveDelay) {
+				prevTime = now;
+				mGame.updateEnemies();
+			}
+			mRedrawHandler.sleep(moveDelay);
+		}
+	}
+
+	private void handleFrameRateChecks() {
+		long currTime = System.currentTimeMillis();
+		// long diff = currTime - prevTime;
+		// prevTime = currTime;
+		// Log.d(TAG, "time diff: " + diff);
+
+		if(frameCount < 30) {
+			frameCount++;
+		}
+		else {
+			frameCount = 0;
+			long timeDiff = currTime - startTime;
+			startTime = currTime;
+			double frameRate = 1000.0 / (timeDiff / 30.0) ;
+			Log.d(TAG, "frame rate: " + (int) frameRate);
+			Log.d(TAG, "timediff: " + timeDiff);
 		}
 	}
 

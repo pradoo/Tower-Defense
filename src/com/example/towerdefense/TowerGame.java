@@ -2,10 +2,12 @@ package com.example.towerdefense;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 
 public class TowerGame extends Activity {
 	
+	private static final String TAG = "TowerGame";
 	private BoardView board;
 	private TowerGameLogic mGame;
 	
@@ -17,7 +19,9 @@ public class TowerGame extends Activity {
 		mGame = new TowerGameLogic();
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
+		Log.d(TAG, "board cell width =  " + board.getHeight());
 		mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
+		board.update();
 		
 		
 	}

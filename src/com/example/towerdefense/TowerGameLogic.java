@@ -2,13 +2,17 @@ package com.example.towerdefense;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 public class TowerGameLogic {
 	
+	private static final String TAG = "GameLogic";
 	private ArrayList<EnemyCircle> enemies;
+	private int xchange;
+	private int xmax;
 	
 	public TowerGameLogic(){
 		enemies = new ArrayList<EnemyCircle>();
-		enemies.add(new EnemyCircle(100, 100, 20));
 	}
 	
 	
@@ -21,7 +25,17 @@ public class TowerGameLogic {
 	}
 	
 	public void level1(int cellheight, int cellwidth){
-		
+		Log.d(TAG, "cellwidth =  " + cellwidth );
+		xchange = 5;
+		xmax = (cellwidth * 8) + (cellwidth /2);
+		enemies.add(new EnemyCircle(100, 100, 20, xchange, xmax));
+	}
+	
+	public void updateEnemies(){
+		for(int i = 0; i < enemies.size(); ++i){
+			enemies.get(i).update();
+			//Log.d(TAG, "xpos =  " + (int) enemies.get(i).getXpos());
+		}
 	}
 
 }

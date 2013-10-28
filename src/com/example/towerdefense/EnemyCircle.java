@@ -1,17 +1,25 @@
 package com.example.towerdefense;
 
+import android.util.Log;
+
 public class EnemyCircle {
 	
 	private int xpos;
 	private int ypos;
+	private int xchange;
+	private int xmax;
 	private int radius;
 	private int health;
 	private int speed;
 	
-	public EnemyCircle(int x, int y, int r){
+	private static final String TAG = "GameLogic";
+	
+	public EnemyCircle(int x, int y, int r, int xchange, int xmax){
 		xpos = x;
 		ypos = y;
 		radius = r;
+		this.xchange = xchange;
+		this.xmax = xmax;
 	}
 	
 	public int getXpos() {
@@ -49,6 +57,12 @@ public class EnemyCircle {
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+	
+	public void update(){
+//		if(xpos < xmax){
+			xpos += xchange;
+		//}
 	}
 
 }
