@@ -37,8 +37,9 @@ public class BoardView extends View{
 
 	public BoardView(Context context) {
 		super(context);
-		initialize();
+		initialize();	
 		mode = RUNNING;
+		//update();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,12 +47,15 @@ public class BoardView extends View{
 		super(context, attrs, defStyle);
 		initialize();
 		mode = RUNNING;
+		//update();
 	}
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initialize();
+		
 		mode = RUNNING;
+		//update();
 	}
 
 	public void initialize() {   

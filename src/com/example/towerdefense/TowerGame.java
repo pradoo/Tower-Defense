@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 
 public class TowerGame extends Activity {
 	
@@ -19,9 +22,9 @@ public class TowerGame extends Activity {
 		mGame = new TowerGameLogic();
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
+		board.setOnTouchListener(mTouchListener);
 		Log.d(TAG, "board cell width =  " + board.getHeight());
 		mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
-		board.update();
 		
 		
 	}
@@ -32,5 +35,13 @@ public class TowerGame extends Activity {
 		getMenuInflater().inflate(R.menu.tower_game, menu);
 		return true;
 	}
+	
+	private OnTouchListener mTouchListener = new OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
+			board.update(); 
+			// So we aren't notified of continued events when finger is moved
+			return false;
+		} 
+	};
 
 }
