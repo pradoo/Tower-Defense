@@ -14,6 +14,7 @@ public class TowerGame extends Activity {
 	private BoardView board;
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
+	private Level level;
 	private boolean running = false;
 
 
@@ -62,7 +63,9 @@ public class TowerGame extends Activity {
 			case 2:
 				if(!running){
 					running = true;
-					mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
+					level = new Level(mGame,board.getBoardCellHeight(),board.getBoardCellWidth());
+					board.setLevel(level);
+					//mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
 					board.update();
 				}
 			}

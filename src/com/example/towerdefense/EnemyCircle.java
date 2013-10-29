@@ -17,11 +17,12 @@ public class EnemyCircle {
 
 	private static final String TAG = "GameLogic";
 
+	@SuppressWarnings("unchecked")
 	public EnemyCircle(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g){
 		position = new int[2];
 		position[0] = x;
 		position[1] = y;		
-		inst = i;
+		inst = (LinkedList<int[]>) i.clone();
 		radius = r;
 		mGame = g;
 	}

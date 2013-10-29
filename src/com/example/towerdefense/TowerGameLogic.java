@@ -45,10 +45,19 @@ public class TowerGameLogic {
 			enemies.get(i).update();
 		}
 	}
+	
+	public void addEnemy(EnemyCircle enemyCircle){
+		enemies.add(enemyCircle);
+	}
 
 
 	public void removeEnemey(EnemyCircle enemyCircle) {
 		enemies.remove(enemyCircle);	
+	}
+
+
+	public void setInst(LinkedList<int[]> i) {
+		inst = i;	
 	}
 
 }

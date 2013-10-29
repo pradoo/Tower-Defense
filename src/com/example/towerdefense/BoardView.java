@@ -16,7 +16,8 @@ public class BoardView extends View{
 
 	private TowerGameLogic mGame;
 	private Paint mPaint;
-
+	private Level level;
+	
 	public static final int BOARD_WIDTH = 10;
 	public static final int BOARD_HEIGHT = 8;
 	
@@ -32,6 +33,8 @@ public class BoardView extends View{
 	private int mode;
 	
 	private int moveDelay = 10;
+	private int enemyDelay = 1500;
+	private int lastenemy = 0;
 
 
 
@@ -39,23 +42,18 @@ public class BoardView extends View{
 		super(context);
 		initialize();	
 		mode = RUNNING;
-		//update();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BoardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initialize();
 		mode = RUNNING;
-		//update();
 	}
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		initialize();
-		
+		initialize();	
 		mode = RUNNING;
-		//update();
 	}
 
 	public void initialize() {   
@@ -64,7 +62,11 @@ public class BoardView extends View{
 
 	public void setGame(TowerGameLogic game) {
 		mGame = game;
-	}	
+	}
+	
+	public void setLevel(Level l) {
+		level = l;
+	}
 
 
 	public int getBoardCellWidth() {
@@ -84,11 +86,9 @@ public class BoardView extends View{
 		drawBoard(canvas);
 		drawPath(canvas);
 		drawEnemies(canvas);
-
 	}
 
 	
-
 	public void drawBoard(Canvas canvas){
 		int boardWidth = getWidth();
 		int boardHeight = getHeight();
@@ -142,9 +142,15 @@ public class BoardView extends View{
 		// TODO Auto-generated method stub
 
 		if (mode == RUNNING) {
-			//handleFrameRateChecks();
+			handleFrameRateChecks();
 			long now = System.currentTimeMillis();
-			if (now - prevTime > moveDelay) {
+			long diff = now - prevTime;
+			lastenemy += diff;
+			if(lastenemy > enemyDelay){
+				level.addEnemey();
+				lastenemy = 0;
+			}
+			if (diff > moveDelay) {
 				prevTime = now;
 				mGame.updateEnemies();
 			}
@@ -154,9 +160,6 @@ public class BoardView extends View{
 
 	private void handleFrameRateChecks() {
 		long currTime = System.currentTimeMillis();
-		// long diff = currTime - prevTime;
-		// prevTime = currTime;
-		// Log.d(TAG, "time diff: " + diff);
 
 		if(frameCount < 30) {
 			frameCount++;
