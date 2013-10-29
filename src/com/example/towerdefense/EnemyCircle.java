@@ -1,41 +1,46 @@
 package com.example.towerdefense;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import android.util.Log;
 
 public class EnemyCircle {
-	
-	private int xpos;
-	private int ypos;
-	private int xchange;
-	private int xmax;
+
+
+	private int[] position;
+	LinkedList<int []> inst;
 	private int radius;
 	private int health;
-	private int speed;
-	
+	private int speed = 2;
+	TowerGameLogic mGame;
+
+
 	private static final String TAG = "GameLogic";
-	
-	public EnemyCircle(int x, int y, int r, int xchange, int xmax){
-		xpos = x;
-		ypos = y;
+
+	public EnemyCircle(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g){
+		position = new int[2];
+		position[0] = x;
+		position[1] = y;		
+		inst = i;
 		radius = r;
-		this.xchange = xchange;
-		this.xmax = xmax;
+		mGame = g;
 	}
-	
+
 	public int getXpos() {
-		return xpos;
+		return position[0];
 	}
 
 	public void setXpos(int xpos) {
-		this.xpos = xpos;
+		position[0] = xpos;
 	}
 
 	public int getYpos() {
-		return ypos;
+		return position[1];
 	}
 
 	public void setYpos(int ypos) {
-		this.ypos = ypos;
+		position[1] = ypos;
 	}
 
 	public int getRadius() {
@@ -58,11 +63,19 @@ public class EnemyCircle {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
+
 	public void update(){
-//		if(xpos < xmax){
-			xpos += xchange;
-		//}
+		if(inst.isEmpty()){
+			mGame.removeEnemey(this);
+			Log.d(TAG, "Removing from enemy list: ");
+		}
+		else if(position[inst.peek()[0]] < inst.peek()[1]){
+			position[inst.peek()[0]] += speed;
+		}
+		else{
+			inst.pop();
+			update();
+		}
 	}
 
 }

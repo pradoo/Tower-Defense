@@ -24,7 +24,7 @@ public class TowerGame extends Activity {
 		board.setGame(mGame);
 		board.setOnTouchListener(mTouchListener);
 		Log.d(TAG, "board cell width =  " + board.getHeight());
-		mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
+		
 		
 		
 	}
@@ -38,6 +38,7 @@ public class TowerGame extends Activity {
 	
 	private OnTouchListener mTouchListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
+			mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
 			board.update(); 
 			// So we aren't notified of continued events when finger is moved
 			return false;
