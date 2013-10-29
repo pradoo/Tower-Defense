@@ -1,6 +1,5 @@
 package com.example.towerdefense;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.util.Log;
@@ -67,7 +66,6 @@ public class EnemyCircle {
 	public void update(){
 		if(inst.isEmpty()){
 			mGame.removeEnemey(this);
-			Log.d(TAG, "Removing from enemy list: ");
 		}
 		else if(position[inst.peek()[0]] < inst.peek()[1]){
 			position[inst.peek()[0]] += speed;

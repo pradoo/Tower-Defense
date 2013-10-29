@@ -1,16 +1,14 @@
 package com.example.towerdefense;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
 
 import android.util.Log;
 
 public class TowerGameLogic {
 	
 	private static final String TAG = "GameLogic";
-	private ArrayList<EnemyCircle> enemies;
+	private ArrayList<EnemyCircle> enemies; 
 	LinkedList<int []> inst;
 	
 	public TowerGameLogic(){

@@ -82,9 +82,12 @@ public class BoardView extends View{
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		drawBoard(canvas);
+		drawPath(canvas);
 		drawEnemies(canvas);
 
 	}
+
+	
 
 	public void drawBoard(Canvas canvas){
 		int boardWidth = getWidth();
@@ -101,6 +104,11 @@ public class BoardView extends View{
 		for(int i = 0; i < BOARD_HEIGHT; ++i){
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
+	}
+	
+	private void drawPath(Canvas canvas) {
+		
+		
 	}
 
 	public void drawEnemies(Canvas canvas){

@@ -35,6 +35,7 @@ public class TowerInfoView extends View {
 	public void onDraw(Canvas canvas){
 		super.onDraw(canvas);
 		
+		
 	}
 
 	
