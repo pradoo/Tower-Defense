@@ -11,12 +11,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/dark_green" 
-         android:layout_weight=".8"/>
+        android:layout_weight=".80"/>
 
     <com.example.towerdefense.TowerInfoView
         android:id="@+id/towerinfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/white" 
         android:layout_weight="0.20" />
 
 </LinearLayout>

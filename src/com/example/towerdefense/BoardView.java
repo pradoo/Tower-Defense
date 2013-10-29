@@ -17,8 +17,8 @@ public class BoardView extends View{
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 
-	public static final int BOARD_WIDTH = 9;
-	public static final int BOARD_HEIGHT = 7;
+	public static final int BOARD_WIDTH = 10;
+	public static final int BOARD_HEIGHT = 8;
 	
 	
 	private static final String TAG = "BoardView";
@@ -95,9 +95,10 @@ public class BoardView extends View{
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
 
-		int cellWidth = boardWidth / BOARD_WIDTH;
+		int cellWidth = (boardWidth / BOARD_WIDTH);
+				;
 		int cellHeight = boardHeight / BOARD_HEIGHT;
-		for(int i = 0; i < BOARD_WIDTH; ++i){
+		for(int i = 0; i <= BOARD_WIDTH; ++i){
 			canvas.drawLine(i * cellWidth, 0, i * cellWidth, boardHeight, mPaint);
 		}
 

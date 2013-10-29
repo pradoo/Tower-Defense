@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 public class TowerGame extends Activity {
-	
+
 	private static final String TAG = "TowerGame";
 	private BoardView board;
+	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,10 @@ public class TowerGame extends Activity {
 		mGame = new TowerGameLogic();
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
-		board.setOnTouchListener(mTouchListener);
-		Log.d(TAG, "board cell width =  " + board.getHeight());
-		
-		
-		
+		board.setOnTouchListener(mBoardListener);
+		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
+		towerinfo.setGame(mGame);
+		towerinfo.setOnTouchListener(mTowerListener);	
 	}
 
 	@Override
@@ -35,12 +35,30 @@ public class TowerGame extends Activity {
 		getMenuInflater().inflate(R.menu.tower_game, menu);
 		return true;
 	}
-	
-	private OnTouchListener mTouchListener = new OnTouchListener() {
+
+	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
-			board.update(); 
 			// So we aren't notified of continued events when finger is moved
+			return false;
+		} 
+	};
+
+	private OnTouchListener mTowerListener = new OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) { 
+			int col = (int) event.getX();
+			int row = (int) event.getY() / towerinfo.getCellHeight();
+			
+			switch (row) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
+				board.update();
+
+			}
+			Log.d(TAG, "touch at : " + row);
 			return false;
 		} 
 	};
