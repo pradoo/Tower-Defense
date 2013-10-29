@@ -14,8 +14,10 @@ public class TowerGame extends Activity {
 	private BoardView board;
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
+	private boolean running = false;
 
 
+	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,6 +26,8 @@ public class TowerGame extends Activity {
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
+		
+		
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);	
@@ -31,11 +35,11 @@ public class TowerGame extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tower_game, menu);
 		return true;
 	}
 
+	//listener for the board not used right now but eventually will be when towers get placed
 	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			// So we aren't notified of continued events when finger is moved
@@ -43,6 +47,8 @@ public class TowerGame extends Activity {
 		} 
 	};
 
+	
+	//Listener for the second view this will see which box the user clicked on and then run if it was the bottom box.
 	private OnTouchListener mTowerListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) { 
 			int col = (int) event.getX();
@@ -54,11 +60,12 @@ public class TowerGame extends Activity {
 			case 1:
 				break;
 			case 2:
-				mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
-				board.update();
-
+				if(!running){
+					running = true;
+					mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
+					board.update();
+				}
 			}
-			Log.d(TAG, "touch at : " + row);
 			return false;
 		} 
 	};
