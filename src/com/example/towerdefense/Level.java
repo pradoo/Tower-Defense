@@ -8,7 +8,7 @@ public class Level{
 	private TowerGameLogic mGame;
 	private LinkedList<int []> inst;
 	private ArrayList<EnemyCircle> enemies;
-	private int index = 0;
+	private int index = 1;
 
 
 
@@ -17,7 +17,6 @@ public class Level{
 		enemies = new ArrayList<EnemyCircle>();
 		inst = new LinkedList<int []>();
 
-		//each instruction is an int array with the first int being which direction you want to move in 0 for x and 1 for y. Next is how far you want to go to.
 		inst.add(new int[] {0,(cellwidth * 3) + (cellwidth /2)});
 		inst.add(new int[] {1,(cellheight * 6) + (cellheight/2)});
 		inst.add(new int[] {0,(cellwidth * 8) + (cellheight/2)});
@@ -31,6 +30,7 @@ public class Level{
 		enemies.add(new EnemyCircle(-50, (cellheight/2)* 9, 50, inst, m));
 		enemies.add(new EnemyCircle(-50, (cellheight/2)* 9, 50, inst, m));
 		enemies.add(new EnemyCircle(-50, (cellheight/2)* 9, 50, inst, m));
+		mGame.addEnemy(enemies.get(0));
 	}
 
 	public void addEnemey(){

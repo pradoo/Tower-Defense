@@ -7,6 +7,11 @@
     <string name="title_activity_tower_game">TowerGame</string>
     <string name="load_game">Continue</string>
     <string name="new_game">New Game</string>
-	<color name="dark_green">#00A550</color>
-	<color name="white">#FFFFFF</color>
+    <string name="play">Play</string>
+	<string name="level1">Level 1</string>
+    <color name="dark_green">#00A550</color>
+    <color name="white">#FFFFFF</color>
+
+    <string name="title_activity_level_pick">LevelPickActivity</string>
+
 </resources>

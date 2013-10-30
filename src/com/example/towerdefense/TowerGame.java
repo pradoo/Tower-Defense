@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 public class TowerGame extends Activity {
 
@@ -15,7 +16,11 @@ public class TowerGame extends Activity {
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
 	private Level level;
+	int numlevel;
 	private boolean running = false;
+
+	int boardwidth;
+	int boardheight;
 
 
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
@@ -23,15 +28,30 @@ public class TowerGame extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tower_game);
+		//numlevel = savedInstanceState.getInt("level");
+
 		mGame = new TowerGameLogic();
 		board = (BoardView) findViewById(R.id.board);
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
-		
-		
+
+
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
 		towerinfo.setGame(mGame);
-		towerinfo.setOnTouchListener(mTowerListener);	
+		towerinfo.setOnTouchListener(mTowerListener);
+
+				board.getViewTreeObserver().addOnGlobalLayoutListener( 
+						new OnGlobalLayoutListener(){
+							@Override
+							public void onGlobalLayout() {
+		
+								boardheight = board.getHeight()/BoardView.BOARD_HEIGHT; 
+								boardwidth = board.getWidth()/BoardView.BOARD_WIDTH;
+								level = new Level(mGame, boardheight,boardwidth);
+								board.setLevel(level);
+								board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
+							}
+						});	
 	}
 
 	@Override
@@ -48,13 +68,13 @@ public class TowerGame extends Activity {
 		} 
 	};
 
-	
+
 	//Listener for the second view this will see which box the user clicked on and then run if it was the bottom box.
 	private OnTouchListener mTowerListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) { 
-			int col = (int) event.getX();
+			//int col = (int) event.getX();
 			int row = (int) event.getY() / towerinfo.getCellHeight();
-			
+
 			switch (row) {
 			case 0:
 				break;
@@ -63,8 +83,6 @@ public class TowerGame extends Activity {
 			case 2:
 				if(!running){
 					running = true;
-					level = new Level(mGame,board.getBoardCellHeight(),board.getBoardCellWidth());
-					board.setLevel(level);
 					board.update();
 				}
 			}

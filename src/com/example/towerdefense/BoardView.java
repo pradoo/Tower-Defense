@@ -17,11 +17,11 @@ public class BoardView extends View{
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 	private Level level;
-	
+
 	public static final int BOARD_WIDTH = 10;
 	public static final int BOARD_HEIGHT = 8;
-	
-	
+
+
 	private static final String TAG = "BoardView";
 
 	private static final int STOPPED = 0;
@@ -31,9 +31,9 @@ public class BoardView extends View{
 	private long startTime = System.currentTimeMillis();
 	private int frameCount;
 	private int mode;
-	
+
 	private int moveDelay = 10;
-	private int enemyDelay = 1500;
+	private int enemyDelay = 75;
 	private int lastenemy = 0;
 
 
@@ -63,7 +63,7 @@ public class BoardView extends View{
 	public void setGame(TowerGameLogic game) {
 		mGame = game;
 	}
-	
+
 	public void setLevel(Level l) {
 		level = l;
 	}
@@ -88,7 +88,7 @@ public class BoardView extends View{
 		drawEnemies(canvas);
 	}
 
-	
+
 	public void drawBoard(Canvas canvas){
 		int boardWidth = getWidth();
 		int boardHeight = getHeight();
@@ -96,7 +96,7 @@ public class BoardView extends View{
 		mPaint.setStrokeWidth(5);
 
 		int cellWidth = (boardWidth / BOARD_WIDTH);
-				;
+		;
 		int cellHeight = boardHeight / BOARD_HEIGHT;
 		for(int i = 0; i <= BOARD_WIDTH; ++i){
 			canvas.drawLine(i * cellWidth, 0, i * cellWidth, boardHeight, mPaint);
@@ -106,10 +106,10 @@ public class BoardView extends View{
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
 	}
-	
+
 	private void drawPath(Canvas canvas) {
-		
-		
+
+
 	}
 
 	public void drawEnemies(Canvas canvas){
@@ -139,14 +139,14 @@ public class BoardView extends View{
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
-
+		if(mGame.levelOver())
+			mode = STOPPED;
 		if (mode == RUNNING) {
 			handleFrameRateChecks();
 			long now = System.currentTimeMillis();
 			long diff = now - prevTime;
-			lastenemy += diff;
-			if(lastenemy > enemyDelay){
+			++lastenemy;
+			if(lastenemy >= enemyDelay){
 				level.addEnemey();
 				lastenemy = 0;
 			}
@@ -160,7 +160,6 @@ public class BoardView extends View{
 
 	private void handleFrameRateChecks() {
 		long currTime = System.currentTimeMillis();
-
 		if(frameCount < 30) {
 			frameCount++;
 		}

@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity implements OnClickListener{
 
-	private static int[] ids = {R.id.new_game, R.id.keepgoing};
+	private static int[] ids = {R.id.play};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,13 +33,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-			case R.id.new_game:
-				Intent i = new Intent(this, TowerGame.class);
+			case R.id.play:
+				Intent i = new Intent(this, LevelPickActivity.class);
 				startActivity(i);
-				break;
-			case R.id.keepgoing:
-				Intent f = new Intent(this, TowerGame.class);
-				startActivity(f);
 				break;
 		}
 	}

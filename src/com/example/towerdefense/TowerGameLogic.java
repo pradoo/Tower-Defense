@@ -44,5 +44,9 @@ public class TowerGameLogic {
 	public void setInst(LinkedList<int[]> i) {
 		inst = i;	
 	}
+	
+	public boolean levelOver(){
+		return enemies.isEmpty();
+	}
 
 }
