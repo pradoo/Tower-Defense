@@ -65,7 +65,6 @@ public class TowerGame extends Activity {
 					running = true;
 					level = new Level(mGame,board.getBoardCellHeight(),board.getBoardCellWidth());
 					board.setLevel(level);
-					//mGame.level1(board.getBoardCellHeight(), board.getBoardCellWidth());
 					board.update();
 				}
 			}
