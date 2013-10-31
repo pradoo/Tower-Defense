@@ -1,7 +1,10 @@
-package com.example.towerdefense;
+package Levels;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import com.example.towerdefense.EnemyCircle;
+import com.example.towerdefense.TowerGameLogic;
 
 public class Level{
 
@@ -33,7 +36,7 @@ public class Level{
 		mGame.addEnemy(enemies.get(0));
 	}
 
-	public void addEnemey(){
+	public void addEnemey() {
 		if(index < enemies.size()){
 			mGame.addEnemy(enemies.get(index));
 			++index;

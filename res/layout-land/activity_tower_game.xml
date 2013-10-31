@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
-    <com.example.towerdefense.BoardView
-        android:id="@+id/board"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dark_green" 
-        android:layout_weight=".80"/>
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
-    <com.example.towerdefense.TowerInfoView
-        android:id="@+id/towerinfo"
-        android:layout_width="0dp"
+        <com.example.towerdefense.BoardView
+            android:id="@+id/board"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white" 
-        android:layout_weight="0.20" />
+        android:layout_weight="6"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <com.example.towerdefense.TowerInfoView
+            android:id="@+id/towerinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+    </LinearLayout>
 
 </LinearLayout>

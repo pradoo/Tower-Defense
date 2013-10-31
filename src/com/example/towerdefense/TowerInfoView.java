@@ -51,10 +51,12 @@ public class TowerInfoView extends View {
 		
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
-		int cellheight = getHeight()/3;
-		int viewwidth = getWidth();
-		canvas.drawLine(0, cellheight, viewwidth, cellheight, mPaint);
-		canvas.drawLine(0, cellheight*2, viewwidth, cellheight*2, mPaint);
+		int cellwidth = getWidth()/5;
+		int viewheight = getHeight();
+		//canvas.drawLine (cellwidth, 0, cellwidth, viewheight, mPaint);
+		canvas.drawLine (cellwidth*4, 0, cellwidth*4, viewheight, mPaint);
+		mPaint.setTextSize(100);
+		canvas.drawText("Start", cellwidth*4 + cellwidth/5, viewheight - viewheight/3, mPaint);
 				
 	}
 

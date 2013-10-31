@@ -2,6 +2,7 @@ package com.example.towerdefense;
 
 import java.util.ArrayList;
 
+import Levels.Level;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,7 +19,7 @@ public class BoardView extends View{
 	private Paint mPaint;
 	private Level level;
 
-	public static final int BOARD_WIDTH = 10;
+	public static final int BOARD_WIDTH = 14;
 	public static final int BOARD_HEIGHT = 8;
 
 
@@ -98,11 +99,11 @@ public class BoardView extends View{
 		int cellWidth = (boardWidth / BOARD_WIDTH);
 		;
 		int cellHeight = boardHeight / BOARD_HEIGHT;
-		for(int i = 0; i <= BOARD_WIDTH; ++i){
+		for(int i = 0; i < BOARD_WIDTH; ++i){
 			canvas.drawLine(i * cellWidth, 0, i * cellWidth, boardHeight, mPaint);
 		}
 
-		for(int i = 0; i < BOARD_HEIGHT; ++i){
+		for(int i = 0; i <= BOARD_HEIGHT; ++i){
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
 	}

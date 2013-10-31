@@ -1,5 +1,6 @@
 package com.example.towerdefense;
 
+import Levels.Level;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -72,10 +73,10 @@ public class TowerGame extends Activity {
 	//Listener for the second view this will see which box the user clicked on and then run if it was the bottom box.
 	private OnTouchListener mTowerListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) { 
-			//int col = (int) event.getX();
-			int row = (int) event.getY() / towerinfo.getCellHeight();
+			int col = (int) event.getX() / towerinfo.getCellWidth();
+			//int row = (int) event.getY();
 
-			switch (row) {
+			switch (col) {
 			case 0:
 				break;
 			case 1:
