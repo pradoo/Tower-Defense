@@ -19,9 +19,9 @@ public class TowerGame extends Activity {
 	private Level level;
 	int numlevel;
 	private boolean running = false;
-
-	int boardwidth;
-	int boardheight;
+	private int tower = 0;
+	private int boardwidth;
+	private int boardheight;
 
 
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
@@ -41,18 +41,18 @@ public class TowerGame extends Activity {
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);
 
-				board.getViewTreeObserver().addOnGlobalLayoutListener( 
-						new OnGlobalLayoutListener(){
-							@Override
-							public void onGlobalLayout() {
-		
-								boardheight = board.getHeight()/BoardView.BOARD_HEIGHT; 
-								boardwidth = board.getWidth()/BoardView.BOARD_WIDTH;
-								level = new Level(mGame, boardheight,boardwidth);
-								board.setLevel(level);
-								board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
-							}
-						});	
+		board.getViewTreeObserver().addOnGlobalLayoutListener( 
+				new OnGlobalLayoutListener(){
+					@Override
+					public void onGlobalLayout() {
+
+						boardheight = board.getHeight()/BoardView.BOARD_HEIGHT; 
+						boardwidth = board.getWidth()/BoardView.BOARD_WIDTH;
+						level = new Level(mGame, boardheight,boardwidth);
+						board.setLevel(level);
+						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
+					}
+				});	
 	}
 
 	@Override
@@ -64,7 +64,14 @@ public class TowerGame extends Activity {
 	//listener for the board not used right now but eventually will be when towers get placed
 	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			// So we aren't notified of continued events when finger is moved
+			if(tower != 0){
+				int col = (int) event.getX() / board.getBoardCellWidth();
+				int row = (int) event.getY() / board.getBoardCellHeight();
+				int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
+				int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
+				mGame.addTower(new Tower(10,x, y));
+				tower = 0;
+			}
 			return false;
 		} 
 	};
@@ -78,14 +85,16 @@ public class TowerGame extends Activity {
 
 			switch (col) {
 			case 0:
+				tower = 1;
 				break;
 			case 1:
 				break;
-			case 2:
+			case 4:
 				if(!running){
 					running = true;
 					board.update();
 				}
+				break;
 			}
 			return false;
 		} 

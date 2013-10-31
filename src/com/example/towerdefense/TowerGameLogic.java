@@ -9,10 +9,12 @@ public class TowerGameLogic {
 	
 	private static final String TAG = "GameLogic";
 	private ArrayList<EnemyCircle> enemies; 
+	private ArrayList<Tower> towers; 
 	LinkedList<int []> inst;
 	
 	public TowerGameLogic(){
 		enemies = new ArrayList<EnemyCircle>();
+		towers = new ArrayList<Tower>();
 	}
 	
 	
@@ -47,6 +49,18 @@ public class TowerGameLogic {
 	
 	public boolean levelOver(){
 		return enemies.isEmpty();
+	}
+
+
+	public void addTower(Tower tower) {
+		// TODO Auto-generated method stub
+		towers.add(tower);
+	}
+
+
+	public ArrayList<Tower> getTowers() {
+		// TODO Auto-generated method stub
+		return towers;
 	}
 
 }

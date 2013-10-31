@@ -38,12 +38,12 @@ public class TowerInfoView extends View {
 	}
 	
 	public int getCellWidth() {
-		return getWidth() / 3;
+		return getWidth() / 5;
 	}
 
 
 	public int getCellHeight() {
-		return getHeight() / 3;
+		return getHeight();
 	}
 	
 	public void onDraw(Canvas canvas){
@@ -53,10 +53,16 @@ public class TowerInfoView extends View {
 		mPaint.setStrokeWidth(5);
 		int cellwidth = getWidth()/5;
 		int viewheight = getHeight();
-		//canvas.drawLine (cellwidth, 0, cellwidth, viewheight, mPaint);
-		canvas.drawLine (cellwidth*4, 0, cellwidth*4, viewheight, mPaint);
-		mPaint.setTextSize(100);
-		canvas.drawText("Start", cellwidth*4 + cellwidth/5, viewheight - viewheight/3, mPaint);
+		for(int i = 0; i < 5; ++ i){
+			canvas.drawLine(cellwidth * i, 0, cellwidth * i, viewheight, mPaint);
+		}
+		//canvas.drawLine (cellwidth*4, 0, cellwidth*4, viewheight, mPaint);
+		mPaint.setTextSize(cellwidth/4);
+		canvas.drawText("Tower1", 0 + cellwidth/10, viewheight - viewheight/3, mPaint);
+		canvas.drawText("Tower2", cellwidth + cellwidth/10, viewheight - viewheight/3, mPaint);
+		canvas.drawText("Tower3", cellwidth*2 + cellwidth/10, viewheight - viewheight/3, mPaint);
+		canvas.drawText("Tower4", cellwidth*3 + cellwidth/10, viewheight - viewheight/3, mPaint);
+		canvas.drawText("Start", cellwidth*4 + cellwidth/6, viewheight - viewheight/3, mPaint);
 				
 	}
 

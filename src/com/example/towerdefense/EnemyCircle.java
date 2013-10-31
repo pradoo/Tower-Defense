@@ -2,12 +2,18 @@ package com.example.towerdefense;
 
 import java.util.LinkedList;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 public class EnemyCircle {
 
 
 	private int[] position;
+	private Paint mPaint;
 	LinkedList<int []> inst;
 	private int radius;
 	private int health;
@@ -25,6 +31,9 @@ public class EnemyCircle {
 		inst = (LinkedList<int[]>) i.clone();
 		radius = r;
 		mGame = g;
+		mPaint = new Paint();
+		mPaint.setColor(Color.BLACK);        
+		mPaint.setStrokeWidth(5);
 	}
 
 	public int getXpos() {

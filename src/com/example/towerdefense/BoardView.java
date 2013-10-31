@@ -18,7 +18,8 @@ public class BoardView extends View{
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 	private Level level;
-
+	ArrayList<Tower> towers;
+	ArrayList<EnemyCircle> enemies;
 	public static final int BOARD_WIDTH = 14;
 	public static final int BOARD_HEIGHT = 8;
 
@@ -59,6 +60,9 @@ public class BoardView extends View{
 
 	public void initialize() {   
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		//towers = new ArrayList<Tower>();
+		//enemies = new ArrayList<EnemyCircle>();
+		
 	}
 
 	public void setGame(TowerGameLogic game) {
@@ -86,9 +90,21 @@ public class BoardView extends View{
 		super.onDraw(canvas);
 		drawBoard(canvas);
 		drawPath(canvas);
+		drawTowers(canvas);
 		drawEnemies(canvas);
 	}
 
+
+	private void drawTowers(Canvas canvas) {
+		mPaint.setColor(Color.BLUE);        
+		mPaint.setStrokeWidth(5);
+		towers = mGame.getTowers();
+		for(int i = 0; i < towers.size(); ++i){
+			Tower temp = towers.get(i);
+			canvas.drawCircle(temp.getX(), temp.getY(), 20, mPaint);
+		}
+		
+	}
 
 	public void drawBoard(Canvas canvas){
 		int boardWidth = getWidth();
@@ -116,7 +132,7 @@ public class BoardView extends View{
 	public void drawEnemies(Canvas canvas){
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
-		ArrayList<EnemyCircle> enemies = mGame.getEnemies();
+		enemies = mGame.getEnemies();
 		for(int i = 0; i < enemies.size(); ++i){
 			EnemyCircle temp = enemies.get(i);
 			canvas.drawCircle(temp.getXpos(), temp.getYpos(), temp.getRadius(), mPaint);
@@ -158,6 +174,16 @@ public class BoardView extends View{
 			mRedrawHandler.sleep(moveDelay);
 		}
 	}
+
+//	public void invalidateenemies() {
+//		// TODO Auto-generated method stub
+//		ArrayList<EnemyCircle> enemies = mGame.getEnemies();
+//		for(int i = 0; i < enemies.size(); ++i){
+//			EnemyCircle temp = enemies.get(i);
+//			invalidateDrawable(temp);
+//			//canvas.drawCircle(temp.getXpos(), temp.getYpos(), temp.getRadius(), mPaint);
+//		}
+//	}
 
 	private void handleFrameRateChecks() {
 		long currTime = System.currentTimeMillis();
