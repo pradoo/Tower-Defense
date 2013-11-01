@@ -13,7 +13,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 public class TowerGame extends Activity {
 
 	private static final String TAG = "TowerGame";
-	private BoardView board;
+	private boardSurface board;
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
 	private Level level;
@@ -32,9 +32,10 @@ public class TowerGame extends Activity {
 		//numlevel = savedInstanceState.getInt("level");
 
 		mGame = new TowerGameLogic();
-		board = (BoardView) findViewById(R.id.board);
+		board = (boardSurface) findViewById(R.id.board);
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
+		//board.pause();
 
 
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
@@ -56,12 +57,23 @@ public class TowerGame extends Activity {
 	}
 
 	@Override
+	protected void onPause() {
+		super.onPause();
+		board.pause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		board.resume();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.tower_game, menu);
 		return true;
 	}
 
-	//listener for the board not used right now but eventually will be when towers get placed
 	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			if(tower != 0){
@@ -82,7 +94,6 @@ public class TowerGame extends Activity {
 		public boolean onTouch(View v, MotionEvent event) { 
 			int col = (int) event.getX() / towerinfo.getCellWidth();
 			//int row = (int) event.getY();
-
 			switch (col) {
 			case 0:
 				tower = 1;
@@ -92,7 +103,8 @@ public class TowerGame extends Activity {
 			case 4:
 				if(!running){
 					running = true;
-					board.update();
+					board.setFirstRun(true);
+					board.resume();
 				}
 				break;
 			}
