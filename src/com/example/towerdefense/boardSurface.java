@@ -17,7 +17,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	Thread thread = null;
 	SurfaceHolder holder;
 	boolean isItOk = false;
-	boolean firstrun = false;
+	boolean firstrun = true;
 
 	private static final String TAG = "BoardView";
 	public static final int BOARD_WIDTH = 14;
@@ -71,11 +71,10 @@ public class boardSurface extends SurfaceView implements Runnable{
 			drawTowers(canvas);
 			drawBoard(canvas);
 			holder.unlockCanvasAndPost(canvas);
-			update();
-			mGame.updateEnemies();
-
+			
 			if(!firstrun){
-				pause();
+				update();
+				mGame.updateEnemies();
 			}
 		}
 	}

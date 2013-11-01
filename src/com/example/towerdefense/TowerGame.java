@@ -103,7 +103,7 @@ public class TowerGame extends Activity {
 			case 4:
 				if(!running){
 					running = true;
-					board.setFirstRun(true);
+					board.setFirstRun(false);
 					board.resume();
 				}
 				break;
