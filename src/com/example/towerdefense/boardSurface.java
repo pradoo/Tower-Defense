@@ -27,7 +27,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private long prevTime = System.currentTimeMillis();
 	private long startTime = System.currentTimeMillis();
 	private int frameCount;
-
+	private int i = 1;
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 	private Level level;
@@ -64,12 +64,13 @@ public class boardSurface extends SurfaceView implements Runnable{
 		while(isItOk){
 			if(!holder.getSurface().isValid())
 				continue;
+			
 			Canvas canvas = holder.lockCanvas();
 			canvas.drawColor(Color.GREEN);
 			
 			drawEnemies(canvas);
-			drawTowers(canvas);
 			drawBoard(canvas);
+			drawTowers(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			
 			if(!firstrun){
@@ -86,7 +87,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 		}
 		++lastenemy;
 		handleFrameRateChecks();
-		if(lastenemy >= enemyDelay){
+		if(lastenemy >= enemyDelay && !mGame.levelOver()){
 			level.addEnemey(); 
 			lastenemy = 0;
 		}
