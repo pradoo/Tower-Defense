@@ -34,6 +34,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	
 	ArrayList<Tower> towers;
 	ArrayList<EnemyCircle> enemies;
+	ArrayList <int[]> path;
 	int lastenemy = 0;
 	int enemyDelay = 75;
 
@@ -68,9 +69,10 @@ public class boardSurface extends SurfaceView implements Runnable{
 			Canvas canvas = holder.lockCanvas();
 			canvas.drawColor(Color.GREEN);
 			
-			drawEnemies(canvas);
+			drawPath(canvas);
 			drawBoard(canvas);
 			drawTowers(canvas);
+			drawEnemies(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			
 			if(!firstrun){
@@ -82,7 +84,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 
 	private void update() {
 		if(mGame.levelOver()){
-			Log.d(TAG, "Game Over");
+			//Log.d(TAG, "Game Over");
 			//pause();
 		}
 		++lastenemy;
@@ -135,6 +137,14 @@ public class boardSurface extends SurfaceView implements Runnable{
 	public void setLevel(Level level1) {
 		// TODO Auto-generated method stub
 		level = level1;
+	}
+	
+	private void drawPath(Canvas canvas) {
+		mPaint.setColor(Color.GRAY);  
+		path = level.getPath();
+		for(int i = 0; i < path.size(); ++i){
+			canvas.drawRect(path.get(i)[1]*getBoardCellWidth(), path.get(i)[0]*getBoardCellHeight(),path.get(i)[1]*getBoardCellWidth() + getBoardCellWidth(), path.get(i)[0]*getBoardCellHeight() + getBoardCellHeight() , mPaint);
+		}
 	}
 
 	public void drawBoard(Canvas canvas){

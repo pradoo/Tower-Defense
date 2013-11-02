@@ -59,10 +59,7 @@ public class BoardView extends View{
 	}
 
 	public void initialize() {   
-		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		//towers = new ArrayList<Tower>();
-		//enemies = new ArrayList<EnemyCircle>();
-		
+		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);		
 	}
 
 	public void setGame(TowerGameLogic game) {

@@ -11,10 +11,13 @@ public class TowerGameLogic {
 	private ArrayList<EnemyCircle> enemies; 
 	private ArrayList<Tower> towers; 
 	LinkedList<int []> inst;
+	// 0 empty 1 path 2 tower
+	private int[][] indexboard;
 	
 	public TowerGameLogic(){
 		enemies = new ArrayList<EnemyCircle>();
 		towers = new ArrayList<Tower>();
+		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 	}
 	
 	
@@ -61,6 +64,17 @@ public class TowerGameLogic {
 	public ArrayList<Tower> getTowers() {
 		// TODO Auto-generated method stub
 		return towers;
+	}
+
+
+	public boolean checktower(int col, int row) {
+		if(indexboard[col][row] == 0)
+			return true;
+		return false;
+	}
+	
+	public int[][] getindexboard(){
+		return indexboard;
 	}
 
 }

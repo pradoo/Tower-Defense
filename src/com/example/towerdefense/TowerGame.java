@@ -35,7 +35,6 @@ public class TowerGame extends Activity {
 		board = (boardSurface) findViewById(R.id.board);
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
-		//board.pause();
 
 
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
@@ -79,9 +78,11 @@ public class TowerGame extends Activity {
 			if(tower != 0){
 				int col = (int) event.getX() / board.getBoardCellWidth();
 				int row = (int) event.getY() / board.getBoardCellHeight();
-				int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
-				int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
-				mGame.addTower(new Tower(10,x, y, mGame));
+				//if(mGame.checktower(col, row)){
+					int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
+					int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
+					mGame.addTower(new Tower(10,x, y, mGame));
+				//}
 				tower = 0;
 			}
 			return false;
@@ -104,7 +105,6 @@ public class TowerGame extends Activity {
 				if(!running){
 					running = true;
 					board.setFirstRun(false);
-					board.resume();
 				}
 				break;
 			}
