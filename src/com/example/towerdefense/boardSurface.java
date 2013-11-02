@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -34,7 +35,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	
 	ArrayList<Tower> towers;
 	ArrayList<EnemyCircle> enemies;
-	ArrayList <int[]> path;
+	Path path;
 	int lastenemy = 0;
 	int enemyDelay = 75;
 
@@ -84,8 +85,8 @@ public class boardSurface extends SurfaceView implements Runnable{
 
 	private void update() {
 		if(mGame.levelOver()){
-			//Log.d(TAG, "Game Over");
-			//pause();
+			Log.d(TAG, "Game Over");
+
 		}
 		++lastenemy;
 		handleFrameRateChecks();
@@ -142,9 +143,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private void drawPath(Canvas canvas) {
 		mPaint.setColor(Color.GRAY);  
 		path = level.getPath();
-		for(int i = 0; i < path.size(); ++i){
-			canvas.drawRect(path.get(i)[1]*getBoardCellWidth(), path.get(i)[0]*getBoardCellHeight(),path.get(i)[1]*getBoardCellWidth() + getBoardCellWidth(), path.get(i)[0]*getBoardCellHeight() + getBoardCellHeight() , mPaint);
-		}
+		canvas.drawPath(path, mPaint);
 	}
 
 	public void drawBoard(Canvas canvas){

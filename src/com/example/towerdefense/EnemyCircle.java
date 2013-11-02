@@ -77,12 +77,23 @@ public class EnemyCircle {
 		if(inst.isEmpty()){
 			mGame.removeEnemey(this);
 		}
-		else if(position[inst.peek()[0]] < inst.peek()[1]){
-			position[inst.peek()[0]] += speed;
+		else if(inst.peek()[2] == 1){
+			if(position[inst.peek()[0]] < inst.peek()[1]){
+				position[inst.peek()[0]] += speed;
+			}
+			else{
+				inst.pop();
+				update();
+			}
 		}
-		else{
-			inst.pop();
-			update();
+		else {
+			if(position[inst.peek()[0]] > inst.peek()[1]){
+				position[inst.peek()[0]] -= speed;
+			}
+			else{
+				inst.pop();
+				update();
+			}
 		}
 	}
 
