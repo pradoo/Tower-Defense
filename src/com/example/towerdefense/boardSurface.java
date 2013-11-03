@@ -179,6 +179,8 @@ public class boardSurface extends SurfaceView implements Runnable{
 		towers = mGame.getTowers();
 		for(int i = 0; i < towers.size(); ++i){
 			Tower temp = towers.get(i);
+			temp.findEnemiesInRange();
+			temp.attackEnemies();
 			canvas.drawCircle(temp.getX(), temp.getY(), 20, mPaint);
 		}
 		

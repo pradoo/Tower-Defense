@@ -8,6 +8,7 @@ public class Tower {
 	//Range can be flattened into a single int
 	//IF we want xRange == yRange
 
+	private int firerate;
 	private int[] position;
 	private int damage;
 	private TowerGameLogic logic;
@@ -31,7 +32,7 @@ public class Tower {
 		range = new int[2];	
 		position = new int[2];
 		logic = gameLogic;
-
+		enemiesInRange = new ArrayList<EnemyCircle>();
 		//The following are subject to change as needed
 		damage = 2;
 		range[0] = startingRange;
@@ -124,11 +125,14 @@ public class Tower {
 	 */
 	public void attackEnemies() {
 		EnemyCircle temp;
-		
-		//Afraid to use a for-each loop because half the time it doesn't work
-		for(int i = 0; i < enemiesInRange.size(); ++i) {
-			temp = enemiesInRange.get(i);
+		if(enemiesInRange.size() > 0){
+			temp = enemiesInRange.get(0);
 			temp.setHealth(temp.getHealth()-damage);
 		}
+		//Afraid to use a for-each loop because half the time it doesn't work
+//		for(int i = 0; i < enemiesInRange.size(); ++i) {
+//			temp = enemiesInRange.get(i);
+//			temp.setHealth(temp.getHealth()-damage);
+//		}
 	}
 }

@@ -81,7 +81,7 @@ public class TowerGame extends Activity {
 				if(mGame.checktower(row, col)){
 					int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
 					int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
-					mGame.addTower(new Tower(10,x, y, mGame));
+					mGame.addTower(new Tower(300,x, y, mGame));
 				}
 				tower = 0;
 			}

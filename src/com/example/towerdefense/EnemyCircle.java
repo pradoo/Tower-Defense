@@ -16,7 +16,7 @@ public class EnemyCircle {
 	private Paint mPaint;
 	LinkedList<int []> inst;
 	private int radius;
-	private int health;
+	private int health = 700;
 	private int speed = 2;
 	TowerGameLogic mGame;
 
@@ -74,7 +74,7 @@ public class EnemyCircle {
 	}
 
 	public void update(){
-		if(inst.isEmpty()){
+		if(inst.isEmpty() || health <= 0){
 			mGame.removeEnemey(this);
 		}
 		else if(inst.peek()[2] == 1){
