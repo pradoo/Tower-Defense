@@ -106,6 +106,7 @@ public class Tower {
 	/**
 	 * This method finds all enemies within firing range of the tower.
 	 */
+	//I think maybe we just need to find the first enemy that is within the range and then attack that one instead of having it find all enemies
 	public void findEnemiesInRange() {
 		enemiesInRange.clear();
 		ArrayList<EnemyCircle> temp = logic.getEnemies();
@@ -125,6 +126,7 @@ public class Tower {
 	 */
 	public void attackEnemies() {
 		EnemyCircle temp;
+		//This only gets the first enemy if you do the one below then it will attack multiple enemies dont want this
 		if(enemiesInRange.size() > 0){
 			temp = enemiesInRange.get(0);
 			temp.setHealth(temp.getHealth()-damage);
