@@ -46,8 +46,8 @@ public class TowerGame extends Activity {
 					@Override
 					public void onGlobalLayout() {
 
-						boardheight = board.getBoardCellHeight();//BoardView.BOARD_HEIGHT; 
-						boardwidth = board.getBoardCellWidth();//BoardView.BOARD_WIDTH;
+						boardheight = board.getBoardCellHeight();
+						boardwidth = board.getBoardCellWidth();
 						level = new Level(mGame, boardheight,boardwidth);
 						board.setLevel(level);
 						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
