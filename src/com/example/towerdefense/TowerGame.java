@@ -41,6 +41,9 @@ public class TowerGame extends Activity {
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);
 
+		
+		//This is used to get the board height and width as the board is getting drawn
+		//if this is not used then the getwidth() and getheight() will always return 0 becasue the view hasnt been drawn yet
 		board.getViewTreeObserver().addOnGlobalLayoutListener( 
 				new OnGlobalLayoutListener(){
 					@Override
@@ -48,6 +51,7 @@ public class TowerGame extends Activity {
 
 						boardheight = board.getBoardCellHeight();
 						boardwidth = board.getBoardCellWidth();
+						//creates the level and sets it
 						level = new Level(mGame, boardheight,boardwidth);
 						board.setLevel(level);
 						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
@@ -55,12 +59,19 @@ public class TowerGame extends Activity {
 				});	
 	}
 
+	/**
+	 * This calls the pause on the Thread that draws the animation
+	 */
 	@Override
 	protected void onPause() {
 		super.onPause();
 		board.pause();
 	}
 
+	
+	/**
+	 * This calls the resume on the Thread that draws the animation
+	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -73,6 +84,7 @@ public class TowerGame extends Activity {
 		return true;
 	}
 
+	//This sets up a listener for the board view and then places a tower if the user has previously click on a tower
 	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			if(tower != 0){
@@ -97,11 +109,13 @@ public class TowerGame extends Activity {
 			//int row = (int) event.getY();
 			switch (col) {
 			case 0:
+				//this case means that the user wants to place the first tower on the board
 				tower = 1;
 				break;
 			case 1:
 				break;
 			case 4:
+				//this case is when the user presses the start button sets the game to be running so that multiple presses dont keep starting the game over and over
 				if(!running){
 					running = true;
 					board.setFirstRun(false);

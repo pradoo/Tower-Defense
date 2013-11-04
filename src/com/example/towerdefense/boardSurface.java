@@ -55,27 +55,35 @@ public class boardSurface extends SurfaceView implements Runnable{
 		initialize();	
 	}
 
+	/**
+	 * gets the holder for the surface and then initializes the paint object
+	 */
 	private void initialize() {
 		holder = getHolder();
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	}
 
+	/**
+	 * This method runs the thread that will do all of the drawing and animation
+	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		// as long as the surface is ok to draw on then we will keep drawing over and over
 		while(isItOk){
 			if(!holder.getSurface().isValid())
 				continue;
 			
+			//this locks the canvas so that no other thread can draw to it execpt for this one
 			Canvas canvas = holder.lockCanvas();
 			canvas.drawColor(Color.GREEN);
-			
+		
 			drawPath(canvas);
 			drawBoard(canvas);
 			drawTowers(canvas);
 			drawEnemies(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			
+			//this is used so that the enemies dont start the moment that the thread starts up. This will be true once the use click start
 			if(!firstrun){
 				update();
 				mGame.updateEnemies();
@@ -83,6 +91,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		}
 	}
 
+	/**
+	 * This method will check if the game is over and will add enemies to the board after so many frames
+	 */
 	private void update() {
 		if(mGame.levelOver()){
 			Log.d(TAG, "Game Over");
@@ -96,6 +107,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		}
 	}
 
+	/**
+	 * This method pauses the thread so that it wont keep running after the user navigates away from the app
+	 */
 	public void pause(){
 		if(thread != null) {
 			isItOk = false;
@@ -112,6 +126,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		}
 	}
 
+	/**
+	 * This method resumes the thread to draw the animations when the app is started up or restarted up
+	 */
 	public void resume(){
 		isItOk = true;
 		thread = new Thread(this);
@@ -173,6 +190,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		}
 	}
 	
+	/**
+	 * This method will draw the towers and then find all enemies within each towers range and attack that tower
+	 */
 	private void drawTowers(Canvas canvas) {
 		mPaint.setColor(Color.BLUE);        
 		mPaint.setStrokeWidth(5);
@@ -186,6 +206,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		
 	}
 
+	/**
+	 * This is used to just compute how many frames per second the app is getting
+	 */
 	private void handleFrameRateChecks() {
 		long currTime = System.currentTimeMillis();
 		if(frameCount < 30) {

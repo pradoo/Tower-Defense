@@ -27,7 +27,8 @@ public class EnemyCircle {
 	public EnemyCircle(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g){
 		position = new int[2];
 		position[0] = x;
-		position[1] = y;		
+		position[1] = y;
+		//this line need to get changed eventually right now copies the list of instructions and save it for each enemy
 		inst = (LinkedList<int[]>) i.clone();
 		radius = r;
 		mGame = g;
@@ -53,7 +54,6 @@ public class EnemyCircle {
 	}
 
 	public int getRadius() {
-		// TODO Auto-generated method stub
 		return radius;
 	}
 
@@ -73,6 +73,10 @@ public class EnemyCircle {
 		this.health = health;
 	}
 
+	/**
+	 * This method will check to see if the enemy is dead or has reached the end of the path and if so it will remove it from the list of enemies
+	 * otherwise it will execute the next instruction 
+	 */
 	public void update(){
 		if(inst.isEmpty() || health <= 0){
 			mGame.removeEnemey(this);
