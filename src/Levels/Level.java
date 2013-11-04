@@ -37,7 +37,7 @@ public class Level{
 		inst.add(new int[] {0,(cw * 8) + halfcw, 1});
 		inst.add(new int[] {1,(ch * 3) + halfch, -1});
 		inst.add(new int[] {0,(cw * 13) + halfcw, 1});
-		mGame.setInst(inst);
+		mGame.setInst(inst);  
 		
 		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
 		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
