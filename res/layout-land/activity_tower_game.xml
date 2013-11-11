@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
-
-        <com.example.towerdefense.boardSurface
-            android:id="@+id/board"
-            android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1" >
+        
+        <TextView 
+            android:id="@+id/level_num"
+            android:layout_width="0dp"
+            android:layout_weight=".5" 
             android:layout_height="wrap_content"
-             />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="6"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
-
-        <com.example.towerdefense.TowerInfoView
-            android:id="@+id/towerinfo"
-            android:layout_width="wrap_content"
+            android:textSize="20sp"/>
+        <TextView 
+            android:id="@+id/gold"
+            android:layout_width="0dp"
+            android:layout_weight=".5" 
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:textSize="20sp"/>
     </LinearLayout>
+
+    <com.example.towerdefense.boardSurface
+        android:id="@+id/board"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".8"
+        android:gravity="center_horizontal" />
+
+    <com.example.towerdefense.TowerInfoView
+        android:id="@+id/towerinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:background="@color/white"
+        android:gravity="center_horizontal" />
 
 </LinearLayout>

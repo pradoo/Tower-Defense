@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.TextView;
 
 public class TowerGame extends Activity {
 
@@ -40,6 +41,12 @@ public class TowerGame extends Activity {
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);
+		
+		TextView level_num = (TextView)findViewById(R.id.level_num);
+		level_num.setText("Level1");
+		
+		TextView gold = (TextView)findViewById(R.id.gold);
+		gold.setText("Gold: " + 0);
 
 		
 		//This is used to get the board height and width as the board is getting drawn
