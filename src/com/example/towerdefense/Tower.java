@@ -12,6 +12,7 @@ public class Tower {
 	private int[] position;
 	private int damage;
 	private TowerGameLogic logic;
+	private static int gold = 100;
 	private ArrayList<EnemyCircle> enemiesInRange;
 
 	// TODO
@@ -39,6 +40,10 @@ public class Tower {
 		range[1] = startingRange;
 		position[0] = x;
 		position[1] = y;
+	}
+	
+	public static int cost(){
+		return gold;
 	}
 
 	public int[] getRange() {

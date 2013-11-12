@@ -15,6 +15,7 @@ public class Level{
 	private LinkedList<int []> inst;
 	private ArrayList<EnemyCircle> enemies;
 	private int index = 1;
+	private static final int gold = 1000;
 	Path path;
 	private int cw;
 	private int ch;
@@ -39,18 +40,21 @@ public class Level{
 		inst.add(new int[] {0,(cw * 13) + halfcw, 1});
 		mGame.setInst(inst);  
 		
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), 50, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
 		mGame.addEnemy(enemies.get(0));
 	}
-
+	
+	public int getGold(){
+		return gold;
+	}
 	public void addEnemey() {
 		if(index < enemies.size()){
 			mGame.addEnemy(enemies.get(index));

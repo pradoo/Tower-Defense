@@ -23,12 +23,12 @@ public class TowerGame extends Activity {
 	private int tower = 0;
 	private int boardwidth;
 	private int boardheight;
-
-
+	private TextView gold;
+	private TextView level_num;
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_tower_game);
 		//numlevel = savedInstanceState.getInt("level");
 
@@ -37,16 +37,14 @@ public class TowerGame extends Activity {
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
 
-
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);
 		
-		TextView level_num = (TextView)findViewById(R.id.level_num);
-		level_num.setText("Level1");
+		level_num = (TextView)findViewById(R.id.level_num);
+		gold = (TextView)findViewById(R.id.gold);
+		mGame.setAct(this);
 		
-		TextView gold = (TextView)findViewById(R.id.gold);
-		gold.setText("Gold: " + 0);
 
 		
 		//This is used to get the board height and width as the board is getting drawn
@@ -60,6 +58,12 @@ public class TowerGame extends Activity {
 						boardwidth = board.getBoardCellWidth();
 						//creates the level and sets it
 						level = new Level(mGame, boardheight,boardwidth);
+						
+						mGame.setGold(level.getGold());
+						
+						level_num.setText("Level1");						
+						gold.setText("Gold: " + mGame.getGold());
+						
 						board.setLevel(level);
 						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
 					}
@@ -75,6 +79,9 @@ public class TowerGame extends Activity {
 		board.pause();
 	}
 
+	public void updateViews(){
+		gold.setText("Gold: " + mGame.getGold());
+	}
 	
 	/**
 	 * This calls the resume on the Thread that draws the animation
@@ -97,10 +104,11 @@ public class TowerGame extends Activity {
 			if(tower != 0){
 				int col = (int) event.getX() / board.getBoardCellWidth();
 				int row = (int) event.getY() / board.getBoardCellHeight();
-				if(mGame.checktower(row, col)){
+				if(mGame.checktower(row, col) && mGame.getGold() >= Tower.cost()){
 					int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
 					int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
 					mGame.addTower(new Tower(300,x, y, mGame));
+					mGame.setGold(-Tower.cost());
 				}
 				tower = 0;
 			}

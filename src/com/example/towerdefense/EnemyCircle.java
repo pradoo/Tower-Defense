@@ -9,15 +9,17 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-public class EnemyCircle {
+public class EnemyCircle extends Drawable{
 
 
 	private int[] position;
 	private Paint mPaint;
 	LinkedList<int []> inst;
 	private int radius;
+	private double ratio = 0.75;
 	private int health = 700;
 	private int speed = 2;
+	private static final int gold = 25;
 	TowerGameLogic mGame;
 
 
@@ -30,7 +32,7 @@ public class EnemyCircle {
 		position[1] = y;
 		//this line need to get changed eventually right now copies the list of instructions and save it for each enemy
 		inst = (LinkedList<int[]>) i.clone();
-		radius = r;
+		radius = (int) (r*ratio);
 		mGame = g;
 		mPaint = new Paint();
 		mPaint.setColor(Color.BLACK);        
@@ -78,7 +80,10 @@ public class EnemyCircle {
 	 * otherwise it will execute the next instruction 
 	 */
 	public void update(){
-		if(inst.isEmpty() || health <= 0){
+		if(inst.isEmpty() )
+			mGame.removeEnemey(this);
+		else if(health <= 0){
+			mGame.setGold(gold);
 			mGame.removeEnemey(this);
 		}
 		else if(inst.peek()[2] == 1){
@@ -99,6 +104,30 @@ public class EnemyCircle {
 				update();
 			}
 		}
+	}
+
+	@Override
+	public void draw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getOpacity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setAlpha(int alpha) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorFilter(ColorFilter cf) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

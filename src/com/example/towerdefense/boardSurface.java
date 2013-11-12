@@ -82,7 +82,6 @@ public class boardSurface extends SurfaceView implements Runnable{
 			drawTowers(canvas);
 			drawEnemies(canvas);
 			holder.unlockCanvasAndPost(canvas);
-			
 			//this is used so that the enemies dont start the moment that the thread starts up. This will be true once the use click start
 			if(!firstrun){
 				update();
