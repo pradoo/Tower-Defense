@@ -134,7 +134,8 @@ public class Tower {
 		//This only gets the first enemy if you do the one below then it will attack multiple enemies dont want this
 		if(enemiesInRange.size() > 0){
 			temp = enemiesInRange.get(0);
-			temp.setHealth(temp.getHealth()-damage);
+			logic.addBullet(new Bullet(position[0],position[1], temp.getXpos(), temp.getYpos(), logic));
+			//temp.setHealth(temp.getHealth()-damage);
 		}
 		//Afraid to use a for-each loop because half the time it doesn't work
 //		for(int i = 0; i < enemiesInRange.size(); ++i) {

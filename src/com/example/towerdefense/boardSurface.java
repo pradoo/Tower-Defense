@@ -35,6 +35,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	
 	ArrayList<Tower> towers;
 	ArrayList<EnemyCircle> enemies;
+	ArrayList<Bullet> bullets;
 	Path path;
 	int lastenemy = 0;
 	int enemyDelay = 75;
@@ -81,7 +82,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 			drawBoard(canvas);
 			drawTowers(canvas);
 			drawEnemies(canvas);
+			drawBullets(canvas);
 			holder.unlockCanvasAndPost(canvas);
+			mGame.updateBullets();
 			//this is used so that the enemies dont start the moment that the thread starts up. This will be true once the use click start
 			if(!firstrun){
 				update();
@@ -205,6 +208,15 @@ public class boardSurface extends SurfaceView implements Runnable{
 		
 	}
 
+	/**
+	 * This method will draw the bullets will call each bullets onDraw method
+	 */
+	private void drawBullets(Canvas canvas) {
+		bullets = mGame.getBullets();
+		for(int i = 0; i < bullets.size(); ++i){
+			bullets.get(i).draw(canvas);
+		}
+	}
 	/**
 	 * This is used to just compute how many frames per second the app is getting
 	 */

@@ -12,6 +12,7 @@ public class TowerGameLogic {
 	private int gold = 0;
 	private ArrayList<EnemyCircle> enemies; 
 	private ArrayList<Tower> towers;
+	private ArrayList<Bullet> bullets;
 	private TowerGame act;
 	LinkedList<int []> inst;
 	// 0 empty 1 path 2 tower
@@ -20,6 +21,7 @@ public class TowerGameLogic {
 	public TowerGameLogic(){
 		enemies = new ArrayList<EnemyCircle>();
 		towers = new ArrayList<Tower>();
+		bullets = new ArrayList<Bullet>();
 		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 	}
 	
@@ -99,6 +101,32 @@ public class TowerGameLogic {
 
 	public void setAct(TowerGame towerGame) {
 		act = towerGame;
+	}
+
+
+	public void addBullet(Bullet bullet) {
+		// TODO Auto-generated method stub
+		bullets.add(bullet);
+	}
+
+
+	public ArrayList<Bullet> getBullets() {
+		// TODO Auto-generated method stub
+		return bullets;
+	}
+
+
+	public void updateBullets() {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < bullets.size(); ++i){
+			bullets.get(i).update();
+		}
+	}
+
+
+	public void removeBullet(Bullet bullet) {
+		// TODO Auto-generated method stub
+		bullets.remove(bullet);
 	}
 
 
