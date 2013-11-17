@@ -2,7 +2,9 @@ package com.example.towerdefense;
 
 import Levels.Level;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 
 public class TowerGame extends Activity {
 
-	private static final String TAG = "TowerGame";
+	private static final String LOG_TAG = "TowerGame_tag";
 	private boardSurface board;
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
@@ -28,6 +30,7 @@ public class TowerGame extends Activity {
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(LOG_TAG,"OnCreate");
 		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_tower_game);
 		//numlevel = savedInstanceState.getInt("level");
@@ -101,6 +104,8 @@ public class TowerGame extends Activity {
 	//This sets up a listener for the board view and then places a tower if the user has previously click on a tower
 	private OnTouchListener mBoardListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
+			Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
+	        vb.vibrate(50);
 			if(tower != 0){
 				int col = (int) event.getX() / board.getBoardCellWidth();
 				int row = (int) event.getY() / board.getBoardCellHeight();
@@ -120,6 +125,8 @@ public class TowerGame extends Activity {
 	//Listener for the second view this will see which box the user clicked on and then run if it was the bottom box.
 	private OnTouchListener mTowerListener = new OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) { 
+			Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
+	        vb.vibrate(50);
 			int col = (int) event.getX() / towerinfo.getCellWidth();
 			//int row = (int) event.getY();
 			switch (col) {

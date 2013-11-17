@@ -12,7 +12,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="75dp"
         android:text="@string/level1"
-        android:onClick="playlevel1"
         android:textSize="20sp" />
 
 </RelativeLayout>
