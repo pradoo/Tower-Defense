@@ -8,12 +8,14 @@ public class Tower {
 	//Range can be flattened into a single int
 	//IF we want xRange == yRange
 
-	private int firerate;
+	// firerate means after so many seconds a bullet will fire. ex firerate of 2 means 1 bullet after 2 seconds
+	private double firerate = 0.25;
 	private int[] position;
 	private int damage;
 	private TowerGameLogic logic;
 	private static int gold = 100;
 	private ArrayList<EnemyCircle> enemiesInRange;
+	long lastime = 0;
 
 	// TODO
 	//PriorityQueue for enemies goes here
@@ -130,17 +132,15 @@ public class Tower {
 	 * This is done by using the EnemyCircle.setHealth() method.
 	 */
 	public void attackEnemies() {
+		double time = System.currentTimeMillis();
+		double diff = (time - lastime)/1000;
 		EnemyCircle temp;
 		//This only gets the first enemy if you do the one below then it will attack multiple enemies dont want this
-		if(enemiesInRange.size() > 0){
+		if(enemiesInRange.size() > 0 && diff >= firerate){
 			temp = enemiesInRange.get(0);
 			logic.addBullet(new Bullet(position[0],position[1], temp.getXpos(), temp.getYpos(), logic));
+			lastime = System.currentTimeMillis();
 			//temp.setHealth(temp.getHealth()-damage);
 		}
-		//Afraid to use a for-each loop because half the time it doesn't work
-//		for(int i = 0; i < enemiesInRange.size(); ++i) {
-//			temp = enemiesInRange.get(i);
-//			temp.setHealth(temp.getHealth()-damage);
-//		}
 	}
 }

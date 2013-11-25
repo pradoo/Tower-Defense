@@ -20,7 +20,7 @@ public class Bullet extends Drawable{
 	private int y;
 	private int xtarget;
 	private int ytarget;
-	private int radius = 5;
+	private int radius = 10;
 	Path path;
 	public Bullet(int xloc, int yloc, int xtar, int ytar, TowerGameLogic g){
 		mPaint.setColor(Color.RED);
