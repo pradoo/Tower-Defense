@@ -32,7 +32,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 	private Level level;
-	
+
 	ArrayList<Tower> towers;
 	ArrayList<EnemyCircle> enemies;
 	ArrayList<Bullet> bullets;
@@ -73,11 +73,11 @@ public class boardSurface extends SurfaceView implements Runnable{
 		while(isItOk){
 			if(!holder.getSurface().isValid())
 				continue;
-			
+
 			//this locks the canvas so that no other thread can draw to it execpt for this one
 			Canvas canvas = holder.lockCanvas();
 			canvas.drawColor(Color.GREEN);
-		
+
 			drawPath(canvas);
 			drawBoard(canvas);
 			drawTowers(canvas);
@@ -85,11 +85,13 @@ public class boardSurface extends SurfaceView implements Runnable{
 			drawBullets(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			mGame.updateBullets();
+
 			//this is used so that the enemies dont start the moment that the thread starts up. This will be true once the use click start
 			if(!firstrun){
 				update();
 				mGame.updateEnemies();
 			}
+			mGame.checkcollisions();
 		}
 	}
 
@@ -159,7 +161,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 		// TODO Auto-generated method stub
 		level = level1;
 	}
-	
+
 	private void drawPath(Canvas canvas) {
 		mPaint.setColor(Color.GRAY);  
 		path = level.getPath();
@@ -189,10 +191,10 @@ public class boardSurface extends SurfaceView implements Runnable{
 		enemies = mGame.getEnemies();
 		for(int i = 0; i < enemies.size(); ++i){
 			EnemyCircle temp = enemies.get(i);
-			canvas.drawCircle(temp.getXpos(), temp.getYpos(), temp.getRadius(), mPaint);
+			temp.draw(canvas);
 		}
 	}
-	
+
 	/**
 	 * This method will draw the towers and then find all enemies within each towers range and attack that tower
 	 */
@@ -206,7 +208,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 			temp.attackEnemies();
 			canvas.drawCircle(temp.getX(), temp.getY(), 20, mPaint);
 		}
-		
+
 	}
 
 	/**

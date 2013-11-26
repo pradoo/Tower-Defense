@@ -8,6 +8,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -23,6 +24,7 @@ public class EnemyCircle extends Drawable{
 	private int speed = 2;
 	private static final int gold = 25;
 	TowerGameLogic mGame;
+	Rect bounds;
 
 	private PathMeasure measure;
 	private Path path;
@@ -84,7 +86,7 @@ public class EnemyCircle extends Drawable{
 	}
 
 	public void setHealth(int health) {
-		this.health = health;
+		this.health += health;
 	}
 
 	/**
@@ -122,8 +124,9 @@ public class EnemyCircle extends Drawable{
 	
 	@Override
 	public void draw(Canvas canvas) {
-		// TODO Auto-generated method stub
-		canvas.drawCircle(pos[1], pos[0], radius, mPaint);
+		bounds = new Rect(position[0]-radius, position[1]-radius,position[0]+radius, position[1]+radius);
+		canvas.drawCircle(position[0], position[1], radius, mPaint);
+		this.setBounds(bounds);
 	}
 
 	@Override

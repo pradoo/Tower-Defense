@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -145,6 +146,19 @@ public class TowerGameLogic {
 
 	public void setFirstRun(boolean t){
 		firstrun = t;
+	}
+	
+	public void checkcollisions(){
+		for(int i = 0; i < enemies.size(); ++i){
+			for(int j = 0; j < bullets.size(); ++j){
+				EnemyCircle enemy = enemies.get(i);
+				Bullet bullet = bullets.get(j);
+				if(Rect.intersects(enemy.getBounds(), bullet.getBounds())){
+					enemy.setHealth(-bullet.getDamage());
+					removeBullet(bullet);
+				}
+			}
+		}
 	}
 
 }

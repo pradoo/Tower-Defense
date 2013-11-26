@@ -11,7 +11,7 @@ public class Tower {
 	// firerate means after so many seconds a bullet will fire. ex firerate of 2 means 1 bullet after 2 seconds
 	private double firerate = 0.25;
 	private int[] position;
-	private int damage;
+
 	private TowerGameLogic logic;
 	private static int gold = 100;
 	private ArrayList<EnemyCircle> enemiesInRange;
@@ -37,7 +37,6 @@ public class Tower {
 		logic = gameLogic;
 		enemiesInRange = new ArrayList<EnemyCircle>();
 		//The following are subject to change as needed
-		damage = 2;
 		range[0] = startingRange;
 		range[1] = startingRange;
 		position[0] = x;
@@ -60,22 +59,6 @@ public class Tower {
 	public void setRange(int newX, int newY) {
 		range[0] = newX;
 		range[1] = newY;
-	}
-
-	/**
-	 * Returns how much damage the tower will inflict on the enemy
-	 * @return The amount of damage the tower will do
-	 */
-	public int getDamage() {
-		return damage;
-	}
-
-	/**
-	 * Sets a new damage amount for the tower
-	 * @param newDamage the new damage amount
-	 */
-	public void setDamage(int newDamage) {
-		damage = newDamage;
 	}
 
 	public int getX() {
