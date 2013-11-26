@@ -34,7 +34,6 @@ public class Bullet extends Drawable{
 		path.moveTo(x, y);
 		path.lineTo(xtarget, ytarget);
 		measure = new PathMeasure(path, false);
-		//speed = measure.getLength() / 30;
 		pos=new float[2];
 		tan=new float[2];
 	}

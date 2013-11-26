@@ -14,7 +14,7 @@ public class Level{
 	private TowerGameLogic mGame;
 	private LinkedList<int []> inst;
 	private ArrayList<EnemyCircle> enemies;
-	private int index = 1;
+	private int index = 0;
 	private static final int gold = 1000;
 	Path path;
 	private int cw;
@@ -38,18 +38,21 @@ public class Level{
 		inst.add(new int[] {0,(cw * 8) + halfcw, 1});
 		inst.add(new int[] {1,(ch * 3) + halfch, -1});
 		inst.add(new int[] {0,(cw * 13) + halfcw, 1});
+		
+		m.setPath(path);
+		
 		mGame.setInst(inst);  
 		
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(-50, (3*ch+halfch), halfch, inst, m));
-		mGame.addEnemy(enemies.get(0));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		//mGame.addEnemy(enemies.get(0));
 	}
 	
 	public int getGold(){

@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -22,6 +24,10 @@ public class EnemyCircle extends Drawable{
 	private static final int gold = 25;
 	TowerGameLogic mGame;
 
+	private PathMeasure measure;
+	private Path path;
+	private float[] pos, tan;
+	private float distance = 0;
 
 	private static final String TAG = "GameLogic";
 
@@ -32,6 +38,12 @@ public class EnemyCircle extends Drawable{
 		position[1] = y;
 		//this line need to get changed eventually right now copies the list of instructions and save it for each enemy
 		inst = (LinkedList<int[]>) i.clone();
+
+		path = g.getPath();
+		measure = new PathMeasure(path, false);
+		pos=new float[2];
+		tan=new float[2];			
+
 		radius = (int) (r*ratio);
 		mGame = g;
 		mPaint = new Paint();
@@ -85,7 +97,7 @@ public class EnemyCircle extends Drawable{
 		else if(health <= 0){
 			mGame.setGold(gold);
 			mGame.removeEnemey(this);
-		}
+		} 
 		else if(inst.peek()[2] == 1){
 			if(position[inst.peek()[0]] < inst.peek()[1]){
 				position[inst.peek()[0]] += speed;
@@ -106,10 +118,12 @@ public class EnemyCircle extends Drawable{
 		}
 	}
 
+	
+	
 	@Override
 	public void draw(Canvas canvas) {
 		// TODO Auto-generated method stub
-		
+		canvas.drawCircle(pos[1], pos[0], radius, mPaint);
 	}
 
 	@Override
@@ -121,13 +135,13 @@ public class EnemyCircle extends Drawable{
 	@Override
 	public void setAlpha(int alpha) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setColorFilter(ColorFilter cf) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

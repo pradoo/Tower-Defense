@@ -106,6 +106,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 		if(lastenemy >= enemyDelay && !mGame.levelOver()){
 			level.addEnemey(); 
 			lastenemy = 0;
+			mGame.setFirstRun(true);
 		}
 	}
 
