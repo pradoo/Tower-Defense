@@ -13,30 +13,27 @@ import android.graphics.drawable.Drawable;
 public class Bullet extends Drawable{
 	private TowerGameLogic mGame;
 	
-	private static Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);  
-	private float speed = 20;
+	private static Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	public static int boardheight;
+	public static int boardwidth;
+	private float speed = 2;
 	private float distance = 0;
 	private float[] pos, tan;
 	private PathMeasure measure;
-	private int x;
-	private int y;
 	private int damage = 100;
-	private int xtarget;
-	private int ytarget;
 	private int radius = 10;
 	Rect bounds;
 	Path path;
-	public Bullet(int xloc, int yloc, int xtar, int ytar, TowerGameLogic g){
+	public Bullet(int x, int y, int xtarget, int ytarget, TowerGameLogic g){
 		mPaint.setColor(Color.RED);
 		mPaint.setStrokeWidth(3);	
 		mGame = g;
-		x = xloc;
-		y = yloc;
-		xtarget = xtar;
-		ytarget = ytar;
 		path = new Path();
 		path.moveTo(x, y);
 		path.lineTo(xtarget, ytarget);
+		int xslope = xtarget-x;
+		int yslope = ytarget-y;
+		path.lineTo((xtarget+xslope*100), (ytarget+yslope*100));
 		measure = new PathMeasure(path, false);
 		pos=new float[2];
 		tan=new float[2];
@@ -73,8 +70,11 @@ public class Bullet extends Drawable{
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
-		if(distance < measure.getLength()){
+		
+		if(pos[0] < 0 || pos[1] < 0 || pos[0] > boardwidth || pos[1] > boardheight){
+			mGame.removeBullet(this);
+		}
+		else if(distance < measure.getLength()){
 			// getPosTan pins the distance along the Path and
 			// computes the position and the tangent.
 			measure.getPosTan(distance, pos, tan);

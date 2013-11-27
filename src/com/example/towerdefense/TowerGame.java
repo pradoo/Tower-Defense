@@ -68,6 +68,9 @@ public class TowerGame extends Activity {
 						gold.setText("Gold: " + mGame.getGold());
 						
 						board.setLevel(level);
+						
+						Bullet.boardheight = board.getHeight();
+						Bullet.boardwidth = board.getWidth();
 						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
 					}
 				});	
