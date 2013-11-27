@@ -23,6 +23,12 @@
             android:layout_weight=".5" 
             android:layout_height="wrap_content"
             android:textSize="20sp"/>
+        <TextView  
+            android:id="@+id/lives"
+            android:layout_width="0dp"
+            android:layout_weight=".5" 
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
     </LinearLayout>
 
     <com.example.towerdefense.boardSurface

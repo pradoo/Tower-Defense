@@ -27,6 +27,7 @@ public class TowerGame extends Activity {
 	private int boardheight;
 	private TextView gold;
 	private TextView level_num;
+	private TextView lives;
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,8 @@ public class TowerGame extends Activity {
 		
 		level_num = (TextView)findViewById(R.id.level_num);
 		gold = (TextView)findViewById(R.id.gold);
+		lives = (TextView)findViewById(R.id.lives);
+		lives.setText("Lives: 20");
 		mGame.setAct(this);
 		
 
@@ -150,5 +153,9 @@ public class TowerGame extends Activity {
 			return false;
 		} 
 	};
+	
+	public void decLives(int l){
+		lives.setText("Lives: " + l);
+	}
 
 }

@@ -12,6 +12,7 @@ public class TowerGameLogic {
 	
 	private static final String TAG = "GameLogic";
 	private int gold = 0;
+	private int lives = 20;
 	private ArrayList<EnemyCircle> enemies; 
 	private ArrayList<Tower> towers;
 	private ArrayList<Bullet> bullets;
@@ -48,6 +49,16 @@ public class TowerGameLogic {
 			
 		});
 		
+	}
+	
+	public void decLives(){
+		--lives;
+		act.runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
+				act.decLives(lives);	
+			}
+		});
 	}
 	public void updateEnemies(){
 		for(int i = 0; i < enemies.size(); ++i){

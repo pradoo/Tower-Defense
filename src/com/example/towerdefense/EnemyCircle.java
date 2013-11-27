@@ -94,8 +94,10 @@ public class EnemyCircle extends Drawable{
 	 * otherwise it will execute the next instruction 
 	 */
 	public void update(){
-		if(inst.isEmpty() )
+		if(inst.isEmpty()){
+			mGame.decLives();
 			mGame.removeEnemey(this);
+		}
 		else if(health <= 0){
 			mGame.setGold(gold);
 			mGame.removeEnemey(this);
