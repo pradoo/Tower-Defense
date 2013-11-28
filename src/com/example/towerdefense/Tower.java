@@ -14,7 +14,7 @@ public class Tower {
 
 	private TowerGameLogic logic;
 	private static int gold = 100;
-	private ArrayList<EnemyCircle> enemiesInRange;
+	private ArrayList<AbsEnemy> enemiesInRange;
 	long lastime = 0;
 
 	// TODO
@@ -35,7 +35,7 @@ public class Tower {
 		range = new int[2];	
 		position = new int[2];
 		logic = gameLogic;
-		enemiesInRange = new ArrayList<EnemyCircle>();
+		enemiesInRange = new ArrayList<AbsEnemy>();
 		//The following are subject to change as needed
 		range[0] = startingRange;
 		range[1] = startingRange;
@@ -79,16 +79,16 @@ public class Tower {
 		position[1] = y;
 	}
 
-	private boolean inRange(EnemyCircle enemy) {
+	private boolean inRange(AbsEnemy e) {
 		//Determine if the enemy is left or right of tower
-		boolean inX = (enemy.getXpos() < position[0]) ?
-				position[0] - range[0] <= enemy.getXpos() :
-				position[0] + range[0] >= enemy.getXpos() ;
+		boolean inX = (e.getXpos() < position[0]) ?
+				position[0] - range[0] <= e.getXpos() :
+				position[0] + range[0] >= e.getXpos() ;
 
 		//Determine if the enemy is above or below tower
-		boolean inY = (enemy.getYpos() < position[1]) ?
-				position[1] - range[1] <= enemy.getYpos() :
-				position[1] + range[1] >= enemy.getYpos() ;
+		boolean inY = (e.getYpos() < position[1]) ?
+				position[1] - range[1] <= e.getYpos() :
+				position[1] + range[1] >= e.getYpos() ;
 
 		return inX && inY;
 	}
@@ -99,9 +99,9 @@ public class Tower {
 	//I think maybe we just need to find the first enemy that is within the range and then attack that one instead of having it find all enemies
 	public void findEnemiesInRange() {
 		enemiesInRange.clear();
-		ArrayList<EnemyCircle> temp = logic.getEnemies();
+		ArrayList<AbsEnemy> temp = logic.getEnemies();
 
-		for(EnemyCircle e: temp)
+		for(AbsEnemy e: temp)
 			if(inRange(e))
 				enemiesInRange.add(e);
 
@@ -117,7 +117,7 @@ public class Tower {
 	public void attackEnemies() {
 		double time = System.currentTimeMillis();
 		double diff = (time - lastime)/1000;
-		EnemyCircle temp;
+		AbsEnemy temp;
 		//This only gets the first enemy if you do the one below then it will attack multiple enemies dont want this
 		if(enemiesInRange.size() > 0 && diff >= firerate){
 			temp = enemiesInRange.get(0);

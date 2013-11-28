@@ -13,7 +13,7 @@ public class TowerGameLogic {
 	private static final String TAG = "GameLogic";
 	private int gold = 0;
 	private int lives = 20;
-	private ArrayList<EnemyCircle> enemies; 
+	private ArrayList<AbsEnemy> enemies; 
 	private ArrayList<Tower> towers;
 	private ArrayList<Bullet> bullets;
 	private TowerGame act;
@@ -24,17 +24,17 @@ public class TowerGameLogic {
 	private int[][] indexboard;
 	
 	public TowerGameLogic(){
-		enemies = new ArrayList<EnemyCircle>();
+		enemies = new ArrayList<AbsEnemy>();
 		towers = new ArrayList<Tower>();
 		bullets = new ArrayList<Bullet>();
 		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 	}
 	
 	
-	public ArrayList<EnemyCircle> getEnemies() {
+	public ArrayList<AbsEnemy> getEnemies() {
 		return enemies;
 	}
-	public void setEnemies(ArrayList<EnemyCircle> enemies) {
+	public void setEnemies(ArrayList<AbsEnemy> enemies) {
 		this.enemies = enemies;
 	}
 	
@@ -66,13 +66,13 @@ public class TowerGameLogic {
 		}
 	}
 	
-	public void addEnemy(EnemyCircle enemyCircle){
-		enemies.add(enemyCircle);
+	public void addEnemy(AbsEnemy enemy){
+		enemies.add(enemy);
 	}
 
 
-	public void removeEnemey(EnemyCircle enemyCircle) {
-		enemies.remove(enemyCircle);	
+	public void removeEnemey(AbsEnemy absEnemy) {
+		enemies.remove(absEnemy);	
 	}
 
 
@@ -162,7 +162,7 @@ public class TowerGameLogic {
 	public void checkcollisions(){
 		for(int i = 0; i < enemies.size(); ++i){
 			for(int j = 0; j < bullets.size(); ++j){
-				EnemyCircle enemy = enemies.get(i);
+				AbsEnemy enemy = enemies.get(i);
 				Bullet bullet = bullets.get(j);
 				if(Rect.intersects(enemy.getBounds(), bullet.getBounds())){
 					enemy.setHealth(-bullet.getDamage());

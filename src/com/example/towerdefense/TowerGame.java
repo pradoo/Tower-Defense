@@ -50,7 +50,6 @@ public class TowerGame extends Activity {
 		lives = (TextView)findViewById(R.id.lives);
 		lives.setText("Lives: 20");
 		mGame.setAct(this);
-		
 
 		
 		//This is used to get the board height and width as the board is getting drawn

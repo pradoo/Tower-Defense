@@ -34,7 +34,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private Level level;
 
 	ArrayList<Tower> towers;
-	ArrayList<EnemyCircle> enemies;
+	ArrayList<AbsEnemy> enemies;
 	ArrayList<Bullet> bullets;
 	Path path;
 	int lastenemy = 0;
@@ -190,7 +190,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 		mPaint.setStrokeWidth(5);
 		enemies = mGame.getEnemies();
 		for(int i = 0; i < enemies.size(); ++i){
-			EnemyCircle temp = enemies.get(i);
+			AbsEnemy temp = enemies.get(i);
 			temp.draw(canvas);
 		}
 	}
