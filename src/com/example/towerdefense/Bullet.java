@@ -16,11 +16,11 @@ public class Bullet extends Drawable{
 	private static Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	public static int boardheight;
 	public static int boardwidth;
-	private float speed = 2;
+	private float speed = 20;
 	private float distance = 0;
 	private float[] pos, tan;
 	private PathMeasure measure;
-	private int damage = 100;
+	private int damage = 50;
 	private int radius = 10;
 	Rect bounds;
 	Path path;

@@ -1,8 +1,12 @@
 package com.example.towerdefense;
 
+import java.util.HashMap;
 import Levels.Level;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +17,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.TextView;
 
+@SuppressLint("UseSparseArrays")
 public class TowerGame extends Activity {
 
 	private static final String LOG_TAG = "TowerGame_tag";
@@ -28,14 +33,24 @@ public class TowerGame extends Activity {
 	private TextView gold;
 	private TextView level_num;
 	private TextView lives;
+	
+	private SoundPool sounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+	private HashMap<Integer, Integer> soundMap;
+	
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d(LOG_TAG,"OnCreate");
 		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_tower_game);
 		//numlevel = savedInstanceState.getInt("level");
-
+		
+		soundMap = new HashMap<Integer, Integer>();
+		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart};
+		for(int id : soundIds) 
+			soundMap.put(id, sounds.load(this, id, 1));
+		
 		mGame = new TowerGameLogic();
 		board = (boardSurface) findViewById(R.id.board);
 		board.setGame(mGame);
@@ -155,6 +170,11 @@ public class TowerGame extends Activity {
 	
 	public void decLives(int l){
 		lives.setText("Lives: " + l);
+	}
+	
+	public void playFromSoundPool(int id, float volume) {
+		if(sounds != null)
+			sounds.play(soundMap.get(id), volume, volume, 1, 0, 1);
 	}
 
 }

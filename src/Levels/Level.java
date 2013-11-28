@@ -6,14 +6,17 @@ import java.util.LinkedList;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
 
+import com.example.towerdefense.AbsEnemy;
 import com.example.towerdefense.EnemyCircle;
+import com.example.towerdefense.R;
+import com.example.towerdefense.TankEnemy;
 import com.example.towerdefense.TowerGameLogic;
 
 public class Level{
 
 	private TowerGameLogic mGame;
 	private LinkedList<int []> inst;
-	private ArrayList<EnemyCircle> enemies;
+	private ArrayList<AbsEnemy> enemies;
 	private int index = 0;
 	private static final int gold = 1000;
 	Path path;
@@ -28,7 +31,7 @@ public class Level{
 		halfcw = cw/2;
 		halfch = ch/2;
 		mGame = m;
-		enemies = new ArrayList<EnemyCircle>();
+		enemies = new ArrayList<AbsEnemy>();
 		inst = new LinkedList<int []>();
 		path = new Path();
 		
@@ -52,7 +55,8 @@ public class Level{
 		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
 		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
 		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		//mGame.addEnemy(enemies.get(0));
+		
+		enemies.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
 	}
 	
 	public int getGold(){
@@ -61,6 +65,7 @@ public class Level{
 	public void addEnemey() {
 		if(index < enemies.size()){
 			mGame.addEnemy(enemies.get(index));
+			mGame.playSound(R.raw.enemystart, (float)1);
 			++index;
 		}
 	}

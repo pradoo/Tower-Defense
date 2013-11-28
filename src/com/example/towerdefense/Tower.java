@@ -1,7 +1,6 @@
 package com.example.towerdefense;
 
 import java.util.ArrayList;
-
 public class Tower {
 
 	private int[] range;
@@ -9,9 +8,8 @@ public class Tower {
 	//IF we want xRange == yRange
 
 	// firerate means after so many seconds a bullet will fire. ex firerate of 2 means 1 bullet after 2 seconds
-	private double firerate = 0.25;
-	private int[] position;
-
+	private double firerate = 1;
+	private int[] position;	
 	private TowerGameLogic logic;
 	private static int gold = 100;
 	private ArrayList<AbsEnemy> enemiesInRange;
@@ -32,6 +30,7 @@ public class Tower {
 	 * @param gameLogic required to access the list of enemies
 	 */
 	public Tower(int startingRange, int x, int y, TowerGameLogic gameLogic) {
+		
 		range = new int[2];	
 		position = new int[2];
 		logic = gameLogic;
@@ -123,7 +122,6 @@ public class Tower {
 			temp = enemiesInRange.get(0);
 			logic.addBullet(new Bullet(position[0],position[1], temp.getXpos(), temp.getYpos(), logic));
 			lastime = System.currentTimeMillis();
-			//temp.setHealth(temp.getHealth()-damage);
 		}
 	}
 }

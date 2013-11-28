@@ -172,4 +172,9 @@ public class TowerGameLogic {
 		}
 	}
 
+
+	public void playSound(int id, float volume) {
+		act.playFromSoundPool(id, volume);		
+	}
+
 }
