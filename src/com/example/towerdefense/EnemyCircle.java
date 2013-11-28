@@ -22,7 +22,9 @@ public class EnemyCircle extends AbsEnemy{
 	
 	@Override
 	public void draw(Canvas canvas) {
-		bounds = new Rect(position[0]-radius, position[1]-radius,position[0]+radius, position[1]+radius);
+		mPaint.setColor(Color.BLACK); 
+		int t = (int) (radius*0.75);
+		bounds = new Rect(position[0]-t, position[1]-t,position[0]+t, position[1]+t);
 		canvas.drawCircle(position[0], position[1], radius, mPaint);
 		this.setBounds(bounds);
 	}
