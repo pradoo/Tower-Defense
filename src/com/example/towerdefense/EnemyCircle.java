@@ -4,25 +4,20 @@ import java.util.LinkedList;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathMeasure;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-
 public class EnemyCircle extends AbsEnemy{
 
 
-
-
-	@SuppressWarnings("unchecked")
 	public EnemyCircle(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g){
-		super(x, y, r, i, g);
+		super(x, y, r, i, g, 0.75);
 		mPaint = new Paint();
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
+		speed = 2;
+		setHealth(700);
+		gold  = 25;
+		
 	}
 	
 	@Override
@@ -32,22 +27,5 @@ public class EnemyCircle extends AbsEnemy{
 		this.setBounds(bounds);
 	}
 
-	@Override
-	public int getOpacity() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setAlpha(int alpha) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setColorFilter(ColorFilter cf) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

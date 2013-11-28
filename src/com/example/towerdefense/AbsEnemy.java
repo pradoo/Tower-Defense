@@ -3,7 +3,7 @@ package com.example.towerdefense;
 import java.util.LinkedList;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -13,23 +13,23 @@ public abstract class AbsEnemy extends  Drawable{
 	
 	protected int[] position;
 	protected Paint mPaint;
-	LinkedList<int []> inst;
 	protected int radius;
-	private double ratio = 0.75;
-	private int health = 700;
-	private int speed = 2;
-	private static final int gold = 25;
+	protected double ratio;
+	protected int health;
+	protected int speed;
+	protected int gold;
+	LinkedList<int []> inst;
 	TowerGameLogic mGame;
 	Rect bounds;
 	
 	@SuppressWarnings("unchecked")
-	public AbsEnemy(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g) {
+	public AbsEnemy(int x, int y, int r, LinkedList<int []> i, TowerGameLogic g, double rat) {
 		position = new int[2];
 		position[0] = x;
 		position[1] = y;
+		ratio = rat;
 		//this line need to get changed eventually right now copies the list of instructions and save it for each enemy
 		inst = (LinkedList<int[]>) i.clone();
-		
 		radius = (int) (r*ratio);
 		mGame = g;
 	}
@@ -103,6 +103,24 @@ public abstract class AbsEnemy extends  Drawable{
 				update();
 			}
 		}
+	}
+	
+	@Override
+	public int getOpacity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setAlpha(int alpha) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorFilter(ColorFilter cf) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	abstract public void draw(Canvas Canvas);
