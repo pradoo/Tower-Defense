@@ -67,7 +67,7 @@ public class TowerGame extends Activity {
 		level_num = (TextView)findViewById(R.id.level_num);
 		gold = (TextView)findViewById(R.id.gold);
 		lives = (TextView)findViewById(R.id.lives);
-		lives.setText("Lives: 20");
+		
 		mGame.setAct(this);
 
 		
@@ -79,22 +79,27 @@ public class TowerGame extends Activity {
 					public void onGlobalLayout() {
 
 						boardheight = board.getBoardCellHeight();
-						boardwidth = board.getBoardCellWidth();
-						//creates the level and sets it
-						level = new Level(mGame, boardheight,boardwidth);
-						
-						mGame.setGold(level.getGold());
-						
-						level_num.setText("Level1");						
-						gold.setText("Gold: " + mGame.getGold());
-						
-						board.setLevel(level);
-						
+						boardwidth = board.getBoardCellWidth();					
 						Bullet.boardheight = board.getHeight();
 						Bullet.boardwidth = board.getWidth();
 						board.getViewTreeObserver().removeGlobalOnLayoutListener( this );
+						startnewgame();
 					}
 				});	
+	}
+	
+	public void startnewgame(){
+		running = false;
+		board.setFirstRun(true);
+		
+		mGame.clear();
+		level = new Level(mGame, boardheight,boardwidth);		
+		mGame.resetGold(level.getGold());		
+		
+		level_num.setText("Level 1");						
+		gold.setText("Gold: " + mGame.getGold());	
+		board.setLevel(level);
+		lives.setText("Lives: 20");
 	}
 
 	/**
@@ -128,7 +133,8 @@ public class TowerGame extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-		case R.id.new_game:
+		case R.id.new_game: 
+			startnewgame();
 			return true;
 		case R.id.sound:
 			soundOn = !soundOn;

@@ -51,6 +51,19 @@ public class TowerGameLogic {
 		
 	}
 	
+	public void resetGold(int g) {
+		gold = g;
+		act.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				act.updateViews();	
+			}
+			
+		});
+		
+	}
+	
 	public void decLives(){
 		--lives;
 		act.runOnUiThread(new Runnable(){
@@ -175,6 +188,16 @@ public class TowerGameLogic {
 
 	public void playSound(int id, float volume) {
 		act.playFromSoundPool(id, volume);		
+	}
+
+
+	public void clear() {
+		firstrun = false;
+		enemies = new ArrayList<AbsEnemy>();
+		towers = new ArrayList<AbsTower>();
+		bullets = new ArrayList<Bullet>();
+		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
+		
 	}
 
 }
