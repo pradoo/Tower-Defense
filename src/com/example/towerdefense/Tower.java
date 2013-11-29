@@ -1,8 +1,8 @@
 package com.example.towerdefense;
 
-import java.util.ArrayList;
-
 import android.graphics.Canvas;
+import android.graphics.Color;
+
 public class Tower extends AbsTower{
 
 	private static final int gold = 100;
@@ -20,8 +20,10 @@ public class Tower extends AbsTower{
 	 * Otherwise, I won't know how to access the enemies :)
 	 * @param gameLogic required to access the list of enemies
 	 */
-	public Tower(int startingRange, int x, int y, TowerGameLogic gameLogic) {
-		super(startingRange, x, y, gameLogic);
+	public Tower(int x, int y, TowerGameLogic gameLogic) {
+		super(x, y, gameLogic);
+		range[0] = 300;
+		range[1] = 300;
 	}
 	
 	public static int cost(){
@@ -29,8 +31,10 @@ public class Tower extends AbsTower{
 	}
 
 	@Override
-	public void draw(Canvas arg0) {
-		// TODO Auto-generated method stub
+	public void draw(Canvas canvas) {
+		mPaint.setColor(Color.BLUE);
+		mPaint.setStrokeWidth(5);
+		canvas.drawCircle(position[0], position[1], 30, mPaint);
 		
 	}
 

@@ -33,7 +33,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private Paint mPaint;
 	private Level level;
 
-	ArrayList<Tower> towers;
+	ArrayList<AbsTower> towers;
 	ArrayList<AbsEnemy> enemies;
 	ArrayList<Bullet> bullets;
 	Path path;
@@ -199,14 +199,12 @@ public class boardSurface extends SurfaceView implements Runnable{
 	 * This method will draw the towers and then find all enemies within each towers range and attack that tower
 	 */
 	private void drawTowers(Canvas canvas) {
-		mPaint.setColor(Color.BLUE);        
-		mPaint.setStrokeWidth(5);
 		towers = mGame.getTowers();
 		for(int i = 0; i < towers.size(); ++i){
-			Tower temp = towers.get(i);
+			AbsTower temp = towers.get(i);
 			temp.findEnemiesInRange();
 			temp.attackEnemies();
-			canvas.drawCircle(temp.getX(), temp.getY(), 20, mPaint);
+			temp.draw(canvas);
 		}
 
 	}

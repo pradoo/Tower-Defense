@@ -3,6 +3,7 @@ package com.example.towerdefense;
 import java.util.ArrayList;
 
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 
 public abstract class AbsTower extends Drawable{
@@ -14,16 +15,16 @@ public abstract class AbsTower extends Drawable{
 	protected ArrayList<AbsEnemy> enemiesInRange;
 	protected long lastime = 0;
 	protected int[] range;
+	protected Paint mPaint;
 	
 	
-	public AbsTower(int startingRange, int x, int y, TowerGameLogic gameLogic) {
+	public AbsTower(int x, int y, TowerGameLogic gameLogic) {
+		mPaint = new Paint();
 		range = new int[2];	
 		position = new int[2];
 		logic = gameLogic;
 		enemiesInRange = new ArrayList<AbsEnemy>();
 		//The following are subject to change as needed
-		range[0] = startingRange;
-		range[1] = startingRange;
 		position[0] = x;
 		position[1] = y;
 	}

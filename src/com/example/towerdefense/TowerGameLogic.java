@@ -14,7 +14,7 @@ public class TowerGameLogic {
 	private int gold = 0;
 	private int lives = 20;
 	private ArrayList<AbsEnemy> enemies; 
-	private ArrayList<Tower> towers;
+	private ArrayList<AbsTower> towers;
 	private ArrayList<Bullet> bullets;
 	private TowerGame act;
 	LinkedList<int []> inst;
@@ -25,7 +25,7 @@ public class TowerGameLogic {
 	
 	public TowerGameLogic(){
 		enemies = new ArrayList<AbsEnemy>();
-		towers = new ArrayList<Tower>();
+		towers = new ArrayList<AbsTower>();
 		bullets = new ArrayList<Bullet>();
 		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 	}
@@ -85,13 +85,13 @@ public class TowerGameLogic {
 	}
 
 
-	public void addTower(Tower tower) {
+	public void addTower(AbsTower tower) {
 		// TODO Auto-generated method stub
 		towers.add(tower);
 	}
 
 
-	public ArrayList<Tower> getTowers() {
+	public ArrayList<AbsTower> getTowers() {
 		// TODO Auto-generated method stub
 		return towers;
 	}

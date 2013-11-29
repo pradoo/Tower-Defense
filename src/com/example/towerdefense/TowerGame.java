@@ -27,7 +27,8 @@ public class TowerGame extends Activity {
 	private Level level;
 	int numlevel;
 	private boolean running = false;
-	private int tower = 0;
+	private int tower;
+	private int towercost;
 	private int boardwidth;
 	private int boardheight;
 	private TextView gold;
@@ -129,11 +130,15 @@ public class TowerGame extends Activity {
 			if(tower != 0){
 				int col = (int) event.getX() / board.getBoardCellWidth();
 				int row = (int) event.getY() / board.getBoardCellHeight();
-				if(mGame.checktower(row, col) && mGame.getGold() >= Tower.cost()){
+				if(mGame.checktower(row, col) && mGame.getGold() >= towercost){
 					int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
 					int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
-					mGame.addTower(new Tower(300,x, y, mGame));
-					mGame.setGold(-Tower.cost());
+					if(tower == 1)
+						mGame.addTower(new Tower(x, y, mGame));
+					else if(tower == 2)
+						mGame.addTower(new PowerTower(x, y, mGame));
+					
+					mGame.setGold(-towercost);
 				}
 				tower = 0;
 			}
@@ -148,13 +153,15 @@ public class TowerGame extends Activity {
 			Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
 	        vb.vibrate(50);
 			int col = (int) event.getX() / towerinfo.getCellWidth();
-			//int row = (int) event.getY();
 			switch (col) {
 			case 0:
 				//this case means that the user wants to place the first tower on the board
 				tower = 1;
+				towercost = Tower.cost();
 				break;
 			case 1:
+				tower = 2;
+				towercost = PowerTower.cost();
 				break;
 			case 4:
 				//this case is when the user presses the start button sets the game to be running so that multiple presses dont keep starting the game over and over
