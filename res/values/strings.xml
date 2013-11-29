@@ -11,6 +11,8 @@
 	<string name="level1">Level 1</string>
 	<string name="level2">Level 2</string>
 	<string name="level3">Level 3</string>
+	<string name="newgame">New Game</string>
+	<string name="sound">Sound</string>
     <color name="dark_green">#00A550</color>
     <color name="white">#FFFFFF</color>
 

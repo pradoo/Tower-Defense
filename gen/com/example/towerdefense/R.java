@@ -27,6 +27,8 @@ public final class R {
     public static final class drawable {
         public static final int home_screen=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int new_game=0x7f020002;
+        public static final int sound=0x7f020003;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0009;
@@ -37,7 +39,9 @@ public final class R {
         public static final int level3=0x7f0a0002;
         public static final int level_num=0x7f0a0004;
         public static final int lives=0x7f0a0006;
+        public static final int new_game=0x7f0a000a;
         public static final int play=0x7f0a0003;
+        public static final int sound=0x7f0a000b;
         public static final int towerinfo=0x7f0a0008;
     }
     public static final class layout {
@@ -53,7 +57,8 @@ public final class R {
     public static final class raw {
         public static final int bulletsound=0x7f040000;
         public static final int enemystart=0x7f040001;
-        public static final int loselife=0x7f040002;
+        public static final int lazer=0x7f040002;
+        public static final int loselife=0x7f040003;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -64,8 +69,10 @@ public final class R {
         public static final int level3=0x7f060009;
         public static final int load_game=0x7f060004;
         public static final int new_game=0x7f060005;
+        public static final int newgame=0x7f06000a;
         public static final int play=0x7f060006;
-        public static final int title_activity_level_pick=0x7f06000a;
+        public static final int sound=0x7f06000b;
+        public static final int title_activity_level_pick=0x7f06000c;
         public static final int title_activity_tower_game=0x7f060003;
     }
     public static final class style {

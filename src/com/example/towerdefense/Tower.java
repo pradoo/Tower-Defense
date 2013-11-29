@@ -34,8 +34,7 @@ public class Tower extends AbsTower{
 	public void draw(Canvas canvas) {
 		mPaint.setColor(Color.BLUE);
 		mPaint.setStrokeWidth(5);
-		canvas.drawCircle(position[0], position[1], 30, mPaint);
-		
+		canvas.drawCircle(position[0], position[1], 30, mPaint);		
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.example.towerdefense;
 
 import java.util.HashMap;
+
 import Levels.Level;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -11,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -34,6 +36,7 @@ public class TowerGame extends Activity {
 	private TextView gold;
 	private TextView level_num;
 	private TextView lives;
+	private boolean soundOn = true;
 	
 	private SoundPool sounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
 	private HashMap<Integer, Integer> soundMap;
@@ -48,7 +51,7 @@ public class TowerGame extends Activity {
 		//numlevel = savedInstanceState.getInt("level");
 		
 		soundMap = new HashMap<Integer, Integer>();
-		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart, R.raw.loselife};
+		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart, R.raw.loselife, R.raw.lazer};
 		for(int id : soundIds) 
 			soundMap.put(id, sounds.load(this, id, 1));
 		
@@ -121,6 +124,18 @@ public class TowerGame extends Activity {
 		getMenuInflater().inflate(R.menu.tower_game, menu);
 		return true;
 	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case R.id.new_game:
+			return true;
+		case R.id.sound:
+			soundOn = !soundOn;
+			return true;
+		}
+		return false;
+	}
 
 	//This sets up a listener for the board view and then places a tower if the user has previously click on a tower
 	private OnTouchListener mBoardListener = new OnTouchListener() {
@@ -180,8 +195,10 @@ public class TowerGame extends Activity {
 	}
 	
 	public void playFromSoundPool(int id, float volume) {
-		if(sounds != null)
+		if(sounds != null && soundOn)
 			sounds.play(soundMap.get(id), volume, volume, 1, 0, 1);
 	}
+	
+	
 
 }

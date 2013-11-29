@@ -102,6 +102,7 @@ public abstract class AbsTower extends Drawable{
 		if(enemiesInRange.size() > 0 && diff >= firerate){
 			temp = enemiesInRange.get(0);
 			logic.addBullet(new Bullet(position[0],position[1], temp.getXpos(), temp.getYpos(), logic));
+			logic.playSound(R.raw.lazer, (float)0.1);
 			lastime = System.currentTimeMillis();
 		}
 	}

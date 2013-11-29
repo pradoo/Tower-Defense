@@ -12,30 +12,15 @@ import com.example.towerdefense.R;
 import com.example.towerdefense.TankEnemy;
 import com.example.towerdefense.TowerGameLogic;
 
-public class Level{
-
-	private TowerGameLogic mGame;
-	private LinkedList<int []> inst;
-	private ArrayList<AbsEnemy> enemies;
-	private int index = 0;
+public class Level extends AbsLevel{
+	
+	
 	private static final int gold = 1000;
-	Path path;
-	private int cw;
-	private int ch;
-	private int halfch;
-	private int halfcw;
-
+	
+	
 	public Level(TowerGameLogic m, int cellheight, int cellwidth) {
-		cw = cellwidth;
-		ch = cellheight;
-		halfcw = cw/2;
-		halfch = ch/2;
-		mGame = m;
-		enemies = new ArrayList<AbsEnemy>();
-		inst = new LinkedList<int []>();
-		path = new Path();
+		super(m, cellheight, cellwidth);
 		
-		makepath(mGame.getindexboard());
 		inst.add(new int[] {0,(cw * 3) + halfcw, 1});
 		inst.add(new int[] {1,(ch * 5) + halfch, 1});
 		inst.add(new int[] {0,(cw * 8) + halfcw, 1});
@@ -45,29 +30,22 @@ public class Level{
 		m.setPath(path);
 		
 		mGame.setInst(inst);  
-		
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		enemies.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		
-		enemies.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		ArrayList<AbsEnemy> wave1 = new ArrayList<AbsEnemy>();
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		enemies.add(wave1);
 	}
 	
 	public int getGold(){
 		return gold;
-	}
-	public void addEnemey() {
-		if(index < enemies.size()){
-			mGame.addEnemy(enemies.get(index));
-			mGame.playSound(R.raw.enemystart, (float)1);
-			++index;
-		}
 	}
 	
 	public void makepath(int[][] i){
@@ -109,10 +87,4 @@ public class Level{
 		i[3][12] = 1;
 		i[3][13] = 1;
 	}
-
-	public Path getPath() {
-		return path;
-	}
-
-
 }
