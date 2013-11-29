@@ -48,7 +48,7 @@ public class TowerGame extends Activity {
 		//numlevel = savedInstanceState.getInt("level");
 		
 		soundMap = new HashMap<Integer, Integer>();
-		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart};
+		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart, R.raw.loselife};
 		for(int id : soundIds) 
 			soundMap.put(id, sounds.load(this, id, 1));
 		

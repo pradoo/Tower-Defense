@@ -53,6 +53,7 @@ public final class R {
     public static final class raw {
         public static final int bulletsound=0x7f040000;
         public static final int enemystart=0x7f040001;
+        public static final int loselife=0x7f040002;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
