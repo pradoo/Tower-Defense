@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.graphics.Path;
+import android.graphics.Path.Direction;
 
 import com.example.towerdefense.AbsEnemy;
 import com.example.towerdefense.R;
@@ -22,6 +23,8 @@ public abstract class AbsLevel {
 	protected int ch;
 	protected int halfch;
 	protected int halfcw;
+	protected Direction d = Path.Direction.CW;
+	protected int[][] board;
 
 
 	public AbsLevel(TowerGameLogic m, int cellheight, int cellwidth) {
@@ -33,8 +36,8 @@ public abstract class AbsLevel {
 		enemies = new ArrayList<ArrayList<AbsEnemy>>();
 		inst = new LinkedList<int []>();
 		path = new Path();
-		
-		makepath(mGame.getindexboard());
+		board = mGame.getindexboard();
+		makepath();
 	}
 	
 	public boolean addEnemey() {
@@ -53,6 +56,11 @@ public abstract class AbsLevel {
 	
 	public abstract int getGold();
 	
-	public abstract void makepath(int[][] i);
+	public abstract void makepath();
+	
+	public void addpath(int r, int c){
+		path.addRect(c*cw, r*ch, c*cw+cw, r*ch+ch, d);
+		board[r][c] = 1;
+	}
 
 }

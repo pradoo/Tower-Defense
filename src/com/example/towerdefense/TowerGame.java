@@ -2,7 +2,9 @@ package com.example.towerdefense;
 
 import java.util.HashMap;
 
+import Levels.AbsLevel;
 import Levels.Level;
+import Levels.Level2;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -26,7 +28,7 @@ public class TowerGame extends Activity {
 	private boardSurface board;
 	private TowerInfoView towerinfo;
 	private TowerGameLogic mGame;
-	private Level level;
+	private AbsLevel level;
 	int numlevel;
 	private boolean running = false;
 	private int tower;
@@ -48,7 +50,7 @@ public class TowerGame extends Activity {
 		Log.d(LOG_TAG,"OnCreate");
 		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_tower_game);
-		//numlevel = savedInstanceState.getInt("level");
+		numlevel = getIntent().getExtras().getInt("level");
 		
 		soundMap = new HashMap<Integer, Integer>();
 		int[] soundIds = {R.raw.bulletsound, R.raw.enemystart, R.raw.loselife, R.raw.lazer};
@@ -93,10 +95,13 @@ public class TowerGame extends Activity {
 		board.setFirstRun(true);
 		
 		mGame.clear();
-		level = new Level(mGame, boardheight,boardwidth);		
+		if(numlevel == 1)
+			level = new Level(mGame, boardheight,boardwidth);
+		if(numlevel == 2)
+			level = new Level2(mGame, boardheight,boardwidth);
 		mGame.resetGold(level.getGold());		
 		
-		level_num.setText("Level 1");						
+		level_num.setText("Level " + numlevel);						
 		gold.setText("Gold: " + mGame.getGold());	
 		board.setLevel(level);
 		lives.setText("Lives: 20");

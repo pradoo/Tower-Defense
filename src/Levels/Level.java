@@ -48,43 +48,24 @@ public class Level extends AbsLevel{
 		return gold;
 	}
 	
-	public void makepath(int[][] i){
-		Direction d = Path.Direction.CW;
-		path.addRect(0*cw, 3*ch, 0*cw+cw, 3*ch+ch, d);
-		path.addRect(1*cw, 3*ch, 1*cw+cw, 3*ch+ch, d);
-		path.addRect(2*cw, 3*ch, 2*cw+cw, 3*ch+ch, d);
-		path.addRect(3*cw, 3*ch, 3*cw+cw, 3*ch+ch, d);
-		path.addRect(3*cw, 4*ch, 3*cw+cw, 4*ch+ch, d);
-		path.addRect(3*cw, 5*ch, 3*cw+cw, 5*ch+ch, d);
-		path.addRect(4*cw, 5*ch, 4*cw+cw, 5*ch+ch, d);
-		path.addRect(5*cw, 5*ch, 5*cw+cw, 5*ch+ch, d);
-		path.addRect(6*cw, 5*ch, 6*cw+cw, 5*ch+ch, d);
-		path.addRect(7*cw, 5*ch, 7*cw+cw, 5*ch+ch, d);
-		path.addRect(8*cw, 5*ch, 8*cw+cw, 5*ch+ch, d);
-		path.addRect(8*cw, 4*ch, 8*cw+cw, 4*ch+ch, d);
-		path.addRect(8*cw, 3*ch, 8*cw+cw, 3*ch+ch, d);
-		path.addRect(9*cw, 3*ch, 9*cw+cw, 3*ch+ch, d);
-		path.addRect(10*cw, 3*ch, 10*cw+cw, 3*ch+ch, d);
-		path.addRect(11*cw, 3*ch, 11*cw+cw, 3*ch+ch, d);
-		path.addRect(12*cw, 3*ch, 12*cw+cw, 3*ch+ch, d);
-		path.addRect(13*cw, 3*ch, 13*cw+cw, 3*ch+ch, d);
-		i[3][0] = 1;
-		i[3][1] = 1;
-		i[3][2] = 1;
-		i[3][3] = 1;
-		i[4][3] = 1;
-		i[5][3] = 1;
-		i[5][4] = 1;
-		i[5][5] = 1;
-		i[5][6] = 1;
-		i[5][7] = 1;
-		i[5][8] = 1;
-		i[4][8] = 1;
-		i[3][8] = 1;
-		i[3][9] = 1;
-		i[3][10] = 1;
-		i[3][11] = 1;
-		i[3][12] = 1;
-		i[3][13] = 1;
+	public void makepath(){
+		addpath(3,0);
+		addpath(3,1);
+		addpath(3,2);
+		addpath(3,3);
+		addpath(4,3);
+		addpath(5,3);
+		addpath(5,4);
+		addpath(5,5);
+		addpath(5,6);
+		addpath(5,7);
+		addpath(5,8);
+		addpath(4,8);
+		addpath(3,8);
+		addpath(3,9);
+		addpath(3,10);
+		addpath(3,11);
+		addpath(3,12);
+		addpath(3,13);
 	}
 }

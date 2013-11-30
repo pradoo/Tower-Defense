@@ -2,6 +2,7 @@ package com.example.towerdefense;
 
 import java.util.ArrayList;
 
+import Levels.AbsLevel;
 import Levels.Level;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -31,7 +32,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private int i = 1;
 	private TowerGameLogic mGame;
 	private Paint mPaint;
-	private Level level;
+	private AbsLevel level;
 
 	ArrayList<AbsTower> towers;
 	ArrayList<AbsEnemy> enemies;
@@ -157,9 +158,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 		return getHeight() / BOARD_HEIGHT;
 	}
 
-	public void setLevel(Level level1) {
+	public void setLevel(AbsLevel l) {
 		// TODO Auto-generated method stub
-		level = level1;
+		level = l;
 	}
 
 	private void drawPath(Canvas canvas) {
