@@ -16,26 +16,28 @@ public class Level2 extends AbsLevel{
 
 	public Level2(TowerGameLogic m, int cellheight, int cellwidth) {
 		super(m, cellheight, cellwidth);
-		inst.add(new int[] {0,(cw * 3) + halfcw, 1});
-		inst.add(new int[] {1,(ch * 5) + halfch, 1});
+		inst.add(new int[] {0,(cw * 1) + halfcw, 1});
+		inst.add(new int[] {1,(ch * 2) + halfch, -1});
+		inst.add(new int[] {0,(cw * 5) + halfcw, 1});
+		inst.add(new int[] {1,(ch * 7) + halfch, 1});
 		inst.add(new int[] {0,(cw * 8) + halfcw, 1});
-		inst.add(new int[] {1,(ch * 3) + halfch, -1});
+		inst.add(new int[] {1,(ch * 2) + halfch, -1});
 		inst.add(new int[] {0,(cw * 13) + halfcw, 1});
 		
 		m.setPath(path);
 		
 		mGame.setInst(inst);  
 		ArrayList<AbsEnemy> wave1 = new ArrayList<AbsEnemy>();
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
-		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (4*ch+halfch), halfch, inst, m));
 		enemies.add(wave1);
 	}
 
