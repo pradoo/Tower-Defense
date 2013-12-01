@@ -3,6 +3,7 @@ package com.example.towerdefense;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import Levels.AbsLevel;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.Log;
@@ -19,6 +20,7 @@ public class TowerGameLogic {
 	private TowerGame act;
 	LinkedList<int []> inst;
 	private Path path;
+	AbsLevel level;
 	private boolean firstrun = false;
 	// 0 empty 1 path 2 tower
 	private int[][] indexboard;
@@ -94,7 +96,7 @@ public class TowerGameLogic {
 	}
 	
 	public boolean levelOver(){
-		return enemies.isEmpty() && firstrun;
+		return enemies.isEmpty() && firstrun && !level.hasEnemies();
 	}
 
 
@@ -199,5 +201,12 @@ public class TowerGameLogic {
 		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 		
 	}
+
+
+	public void setLevel(AbsLevel l) {
+		level = l;
+		
+	}
+
 
 }

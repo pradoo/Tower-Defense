@@ -63,4 +63,8 @@ public abstract class AbsLevel {
 		board[r][c] = 1;
 	}
 
+	public boolean hasEnemies() {
+		return index < enemies.get(wave).size();
+	}
+
 }

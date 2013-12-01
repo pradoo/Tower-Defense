@@ -92,6 +92,7 @@ public class TowerGame extends Activity {
 	
 	public void startnewgame(){
 		running = false;
+		
 		board.setFirstRun(true);
 		
 		mGame.clear();
@@ -100,7 +101,7 @@ public class TowerGame extends Activity {
 		if(numlevel == 2)
 			level = new Level2(mGame, boardheight,boardwidth);
 		mGame.resetGold(level.getGold());		
-		
+		mGame.setLevel(level);
 		level_num.setText("Level " + numlevel);						
 		gold.setText("Gold: " + mGame.getGold());	
 		board.setLevel(level);
