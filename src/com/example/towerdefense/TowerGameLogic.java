@@ -207,6 +207,10 @@ public class TowerGameLogic {
 		level = l;
 		
 	}
+	
+	public void addToBoard(int row, int col, int value){
+		indexboard[row][col] = value;
+	}
 
 
 }

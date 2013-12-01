@@ -160,6 +160,7 @@ public class TowerGame extends Activity {
 				if(mGame.checktower(row, col) && mGame.getGold() >= towercost){
 					int x = col * board.getBoardCellWidth() + board.getBoardCellWidth()/2;
 					int y = row * board.getBoardCellHeight() + board.getBoardCellHeight()/2;
+					mGame.addToBoard(row, col, 2);
 					if(tower == 1)
 						mGame.addTower(new Tower(x, y, mGame));
 					else if(tower == 2)
