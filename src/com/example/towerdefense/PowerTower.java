@@ -19,9 +19,13 @@ public class PowerTower extends AbsTower{
 
 	@Override
 	public void draw(Canvas canvas) {
+		mPaint.setAntiAlias(true);
 		mPaint.setColor(Color.MAGENTA);
 		mPaint.setStrokeWidth(5);
-		canvas.drawCircle(position[0], position[1], 50, mPaint);
+		float cellHeight =  canvas.getHeight() / boardSurface.BOARD_HEIGHT;
+		float cellWidth = canvas.getWidth() / boardSurface.BOARD_WIDTH;
+		float radius = Math.min(cellHeight,cellWidth) / 2;
+		canvas.drawCircle(position[0], position[1], radius, mPaint);
 	}
 
 }

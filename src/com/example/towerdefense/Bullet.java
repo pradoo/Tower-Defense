@@ -21,10 +21,11 @@ public class Bullet extends Drawable{
 	private float[] pos, tan;
 	private PathMeasure measure;
 	private int damage = 50;
-	private int radius = 10;
+	private int radius = 5;
 	Rect bounds;
 	Path path;
 	public Bullet(int x, int y, int xtarget, int ytarget, TowerGameLogic g){
+		mPaint.setAntiAlias(true);
 		mPaint.setColor(Color.RED);
 		mPaint.setStrokeWidth(3);	
 		mGame = g;
@@ -43,7 +44,7 @@ public class Bullet extends Drawable{
 	public void draw(Canvas canvas) {
 		// TODO Auto-generated method stub
 		bounds = new Rect((int)pos[0] - radius, (int)pos[1] - radius, (int)pos[0] + radius, (int)pos[1] + radius);
-		canvas.drawRect(bounds, mPaint);
+		canvas.drawRoundRect(new RectF(bounds), radius, radius, mPaint);
 		this.setBounds(bounds);
 	}
 

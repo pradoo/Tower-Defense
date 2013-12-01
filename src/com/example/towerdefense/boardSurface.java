@@ -7,8 +7,11 @@ import Levels.Level;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -24,7 +27,11 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private static final String TAG = "BoardView";
 	public static final int BOARD_WIDTH = 14;
 	public static final int BOARD_HEIGHT = 8;
-
+	public static final int BROWN = Color.rgb(150, 75, 0);
+	public static final int RUDDY_BROWN = Color.rgb(187, 101, 40);
+	public static final int BURNT_ORANGE = Color.rgb(207, 83, 0);
+	public static final int DESERT_SAND = Color.rgb(237, 201, 175);
+	public static final int BUFF = Color.rgb(240, 220, 130);
 
 	private long prevTime = System.currentTimeMillis();
 	private long startTime = System.currentTimeMillis();
@@ -33,6 +40,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private TowerGameLogic mGame;
 	private Paint mPaint;
 	private AbsLevel level;
+	
 
 	ArrayList<AbsTower> towers;
 	ArrayList<AbsEnemy> enemies;
@@ -77,10 +85,9 @@ public class boardSurface extends SurfaceView implements Runnable{
 
 			//this locks the canvas so that no other thread can draw to it execpt for this one
 			Canvas canvas = holder.lockCanvas();
-			canvas.drawColor(Color.GREEN);
 
-			drawPath(canvas);
 			drawBoard(canvas);
+			drawPath(canvas);
 			drawTowers(canvas);
 			drawEnemies(canvas);
 			drawBullets(canvas);
@@ -102,7 +109,6 @@ public class boardSurface extends SurfaceView implements Runnable{
 	private void update() {
 		if(mGame.levelOver()){
 			Log.d(TAG, "Game Over");
-
 		}
 		++lastenemy;
 		handleFrameRateChecks();
@@ -164,17 +170,23 @@ public class boardSurface extends SurfaceView implements Runnable{
 	}
 
 	private void drawPath(Canvas canvas) {
-		mPaint.setColor(Color.GRAY);  
+		mPaint = new Paint();
+		mPaint.setColor(BUFF); 
 		path = level.getPath();
 		canvas.drawPath(path, mPaint);
 	}
 
 	public void drawBoard(Canvas canvas){
+		LinearGradient lg;
+		lg = new LinearGradient(0,0,0,canvas.getHeight(),BROWN,DESERT_SAND,Shader.TileMode.MIRROR);
+		mPaint.setShader(lg);
+		canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),mPaint);
+		/*
 		int boardWidth = canvas.getWidth();
 		int boardHeight = canvas.getHeight();
 		mPaint.setColor(Color.BLACK);        
 		mPaint.setStrokeWidth(5);
-
+		
 		int cellWidth = (boardWidth / BOARD_WIDTH);
 		int cellHeight = boardHeight / BOARD_HEIGHT;
 		for(int i = 0; i < BOARD_WIDTH; ++i){
@@ -184,11 +196,12 @@ public class boardSurface extends SurfaceView implements Runnable{
 		for(int i = 0; i <= BOARD_HEIGHT; ++i){
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
+		*/
 	}
 
 	public void drawEnemies(Canvas canvas){
-		mPaint.setColor(Color.BLACK);        
-		mPaint.setStrokeWidth(5);
+		//mPaint.setColor(Color.BLACK);        
+		//mPaint.setStrokeWidth(5);		
 		enemies = mGame.getEnemies();
 		for(int i = 0; i < enemies.size(); ++i){
 			AbsEnemy temp = enemies.get(i);

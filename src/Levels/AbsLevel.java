@@ -62,7 +62,7 @@ public abstract class AbsLevel {
 		path.addRect(c*cw, r*ch, c*cw+cw, r*ch+ch, d);
 		board[r][c] = 1;
 	}
-
+	
 	public boolean hasEnemies() {
 		return index < enemies.get(wave).size();
 	}

@@ -73,7 +73,9 @@ public abstract class AbsEnemy extends  Drawable{
 
 	
 	/**
-	 * This method will check to see if the enemy is dead or has reached the end of the path and if so it will remove it from the list of enemies
+	 * This method will check to see if the enemy is dead 
+	 * or has reached the end of the path and if so it will 
+	 * remove it from the list of enemies
 	 * otherwise it will execute the next instruction 
 	 */
 	public void update(){
