@@ -21,7 +21,7 @@ public class Bullet extends Drawable{
 	private float[] pos, tan;
 	private PathMeasure measure;
 	private int damage = 50;
-	private int radius = 5;
+	private int radius = 10;
 	Rect bounds;
 	Path path;
 	public Bullet(int x, int y, int xtarget, int ytarget, TowerGameLogic g){
