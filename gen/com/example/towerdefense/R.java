@@ -11,8 +11,9 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int black=0x7f070001;
         public static final int dark_green=0x7f070000;
-        public static final int white=0x7f070001;
+        public static final int white=0x7f070002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -31,18 +32,20 @@ public final class R {
         public static final int sound=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0009;
-        public static final int board=0x7f0a0007;
-        public static final int gold=0x7f0a0005;
-        public static final int level1=0x7f0a0000;
-        public static final int level2=0x7f0a0001;
-        public static final int level3=0x7f0a0002;
-        public static final int level_num=0x7f0a0004;
-        public static final int lives=0x7f0a0006;
-        public static final int new_game=0x7f0a000a;
-        public static final int play=0x7f0a0003;
-        public static final int sound=0x7f0a000b;
-        public static final int towerinfo=0x7f0a0008;
+        public static final int action_settings=0x7f0a000b;
+        public static final int board=0x7f0a0009;
+        public static final int gold=0x7f0a0007;
+        public static final int level1=0x7f0a0001;
+        public static final int level2=0x7f0a0002;
+        public static final int level3=0x7f0a0003;
+        public static final int level_num=0x7f0a0006;
+        public static final int lives=0x7f0a0008;
+        public static final int name=0x7f0a0004;
+        public static final int new_game=0x7f0a000c;
+        public static final int picklevel=0x7f0a0000;
+        public static final int play=0x7f0a0005;
+        public static final int sound=0x7f0a000d;
+        public static final int towerinfo=0x7f0a000a;
     }
     public static final class layout {
         public static final int activity_level_pick=0x7f030000;
@@ -67,12 +70,13 @@ public final class R {
         public static final int level1=0x7f060007;
         public static final int level2=0x7f060008;
         public static final int level3=0x7f060009;
+        public static final int levelpick=0x7f06000c;
         public static final int load_game=0x7f060004;
         public static final int new_game=0x7f060005;
         public static final int newgame=0x7f06000a;
         public static final int play=0x7f060006;
         public static final int sound=0x7f06000b;
-        public static final int title_activity_level_pick=0x7f06000c;
+        public static final int title_activity_level_pick=0x7f06000d;
         public static final int title_activity_tower_game=0x7f060003;
     }
     public static final class style {
