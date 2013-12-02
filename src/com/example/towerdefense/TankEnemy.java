@@ -16,7 +16,7 @@ public class TankEnemy extends AbsEnemy{
 		super(x, y, r, i, g, 0.90);
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		speed = 1;
-		setHealth(1500);
+		setHealth(2000);
 		gold  = 50;
 	}
 

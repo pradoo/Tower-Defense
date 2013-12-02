@@ -41,6 +41,10 @@ public class Level extends AbsLevel{
 		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
 		wave1.add(new EnemyCircle(0, (3*ch+halfch), halfch, inst, m));
 		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (3*ch+halfch), halfch, inst, m));
 		enemies.add(wave1);
 	}
 	

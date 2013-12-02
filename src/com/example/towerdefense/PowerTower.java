@@ -11,6 +11,7 @@ public class PowerTower extends AbsTower{
 		super(x, y, gameLogic);
 		range[0] = 150;
 		range[1] = 150;
+		firerate = 0.1;
 	}
 	
 	public static int cost(){
@@ -20,7 +21,7 @@ public class PowerTower extends AbsTower{
 	@Override
 	public void draw(Canvas canvas) {
 		mPaint.setAntiAlias(true);
-		mPaint.setColor(Color.MAGENTA);
+		mPaint.setColor(Color.BLUE);
 		mPaint.setStrokeWidth(5);
 		float cellHeight =  canvas.getHeight() / boardSurface.BOARD_HEIGHT;
 		float cellWidth = canvas.getWidth() / boardSurface.BOARD_WIDTH;

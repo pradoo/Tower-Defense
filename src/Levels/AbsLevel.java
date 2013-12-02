@@ -25,6 +25,8 @@ public abstract class AbsLevel {
 	protected int halfcw;
 	protected Direction d = Path.Direction.CW;
 	protected int[][] board;
+	public int startspeed;
+	protected AbsEnemy lastenemy;
 
 
 	public AbsLevel(TowerGameLogic m, int cellheight, int cellwidth) {
@@ -32,6 +34,7 @@ public abstract class AbsLevel {
 		ch = cellheight;
 		halfcw = cw/2;
 		halfch = ch/2;
+		startspeed = 2;
 		mGame = m;
 		enemies = new ArrayList<ArrayList<AbsEnemy>>();
 		inst = new LinkedList<int []>();
@@ -42,7 +45,8 @@ public abstract class AbsLevel {
 	
 	public boolean addEnemey() {
 		if(index < enemies.get(wave).size()){
-			mGame.addEnemy(enemies.get(wave).get(index));
+			lastenemy = enemies.get(wave).get(index);
+			mGame.addEnemy(lastenemy);
 			mGame.playSound(R.raw.enemystart, (float)1);
 			++index;
 			return true;
@@ -65,6 +69,10 @@ public abstract class AbsLevel {
 	
 	public boolean hasEnemies() {
 		return index < enemies.get(wave).size();
+	}
+
+	public int lastSpeed() {
+		return lastenemy.getSpeed();
 	}
 
 }

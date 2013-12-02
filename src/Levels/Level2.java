@@ -28,6 +28,7 @@ public class Level2 extends AbsLevel{
 		
 		mGame.setInst(inst);  
 		ArrayList<AbsEnemy> wave1 = new ArrayList<AbsEnemy>();
+		
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
@@ -37,6 +38,13 @@ public class Level2 extends AbsLevel{
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
 		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new EnemyCircle(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (4*ch+halfch), halfch, inst, m));
+		wave1.add(new TankEnemy(0, (4*ch+halfch), halfch, inst, m));
 		wave1.add(new TankEnemy(0, (4*ch+halfch), halfch, inst, m));
 		enemies.add(wave1);
 	}

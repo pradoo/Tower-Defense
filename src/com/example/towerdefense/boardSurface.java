@@ -47,7 +47,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	ArrayList<Bullet> bullets;
 	Path path;
 	int lastenemy = 0;
-	int enemyDelay = 75;
+	int enemyDelay = 150/2;
 
 	public boardSurface(Context context) {
 		super(context);
@@ -113,7 +113,8 @@ public class boardSurface extends SurfaceView implements Runnable{
 		++lastenemy;
 		handleFrameRateChecks();
 		if(lastenemy >= enemyDelay && !mGame.levelOver()){
-			level.addEnemey();
+			if(level.addEnemey())
+				enemyDelay = 150/level.lastSpeed();
 			lastenemy = 0;
 			mGame.setFirstRun(true);
 		}
