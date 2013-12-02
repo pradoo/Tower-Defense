@@ -3,6 +3,7 @@ package Levels;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import android.content.SharedPreferences;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
 
@@ -15,8 +16,8 @@ import com.example.towerdefense.TowerGameLogic;
 public class Level extends AbsLevel{
 	
 	
-	private static final int gold = 1000;
-	
+	private int gold = 1000;
+
 	
 	public Level(TowerGameLogic m, int cellheight, int cellwidth) {
 		super(m, cellheight, cellwidth);

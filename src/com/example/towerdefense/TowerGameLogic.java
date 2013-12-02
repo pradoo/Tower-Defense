@@ -14,6 +14,7 @@ public class TowerGameLogic {
 	private static final String TAG = "GameLogic";
 	private int gold = 0;
 	private int lives = 20;
+	private boolean hasSaved;
 	private ArrayList<AbsEnemy> enemies; 
 	private ArrayList<AbsTower> towers;
 	private ArrayList<Bullet> bullets;
@@ -32,6 +33,13 @@ public class TowerGameLogic {
 		indexboard = new int[boardSurface.BOARD_HEIGHT][boardSurface.BOARD_WIDTH];
 	}
 	
+	public void setSaved(boolean aa){
+		hasSaved = aa;
+	}
+	
+	public boolean hasSaved(){
+		return hasSaved;
+	}
 	
 	public ArrayList<AbsEnemy> getEnemies() {
 		return enemies;
@@ -55,6 +63,19 @@ public class TowerGameLogic {
 	
 	public void resetGold(int g) {
 		gold = g;
+		act.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				act.updateViews();	
+			}
+			
+		});
+		
+	}
+	
+	public void setLives(int g){
+		lives = g;
 		act.runOnUiThread(new Runnable(){
 
 			@Override
@@ -127,7 +148,10 @@ public class TowerGameLogic {
 		// TODO Auto-generated method stub
 		return gold;
 	}
-
+	
+	public int getLives(){
+		return lives;
+	}
 
 	public void setAct(TowerGame towerGame) {
 		act = towerGame;

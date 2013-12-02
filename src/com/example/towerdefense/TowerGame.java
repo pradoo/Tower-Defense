@@ -2,7 +2,6 @@ package com.example.towerdefense;
 
 import java.util.HashMap;
 
-import Levels.AbsLevel;
 import Levels.*;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -11,6 +10,7 @@ import android.os.Vibrator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,9 +38,12 @@ public class TowerGame extends Activity {
 	private TextView level_num;
 	private TextView lives;
 	private boolean soundOn = true;
+	private boolean hasPreferences;
 	
 	private SoundPool sounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
 	private HashMap<Integer, Integer> soundMap;
+	
+	private SharedPreferences mPrefs;
 	
 	//creates the activity. This sets the listeners for the 2 views and then sets the game for each of the views
 	
@@ -60,15 +63,17 @@ public class TowerGame extends Activity {
 		board = (boardSurface) findViewById(R.id.board);
 		board.setGame(mGame);
 		board.setOnTouchListener(mBoardListener);
-
+		
 		towerinfo = (TowerInfoView) findViewById(R.id.towerinfo);
 		towerinfo.setGame(mGame);
 		towerinfo.setOnTouchListener(mTowerListener);
-		
 		level_num = (TextView)findViewById(R.id.level_num);
 		gold = (TextView)findViewById(R.id.gold);
 		lives = (TextView)findViewById(R.id.lives);
 		
+
+		mPrefs = getSharedPreferences("td_prefs", MODE_PRIVATE);
+		hasPreferences=mPrefs.contains("gold");	
 		mGame.setAct(this);
 
 		
@@ -89,6 +94,16 @@ public class TowerGame extends Activity {
 				});	
 	}
 	
+	@Override 
+	protected void onStop() { 
+		super.onStop(); 	 
+		 // Save the current scores 
+		 SharedPreferences.Editor ed = mPrefs.edit(); 
+		 ed.putInt("gold", mGame.getGold()); 
+		 ed.putInt("lives", mGame.getLives()); 
+		 ed.commit(); 
+		 hasPreferences = true;
+	}
 	public void startnewgame(){
 		running = false;
 		
@@ -101,12 +116,20 @@ public class TowerGame extends Activity {
 			level = new Level2(mGame, boardheight,boardwidth);
 		if(numlevel == 3)
 			level = new Level3(mGame, boardheight,boardwidth);
-		mGame.resetGold(level.getGold());		
+		if(hasPreferences){
+			mGame.setSaved(true);
+			mGame.resetGold(mPrefs.getInt("gold", 1234));
+			mGame.setLives(mPrefs.getInt("lives", 1234));
+		}else{
+			mGame.resetGold(level.getGold());	
+		}	
 		mGame.setLevel(level);
+		
 		level_num.setText("Level " + numlevel);						
 		gold.setText("Gold: " + mGame.getGold());	
 		board.setLevel(level);
-		lives.setText("Lives: 20");
+		lives.setText("Lives: " + mGame.getLives());
+		
 	}
 
 	/**
@@ -115,7 +138,13 @@ public class TowerGame extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		SharedPreferences.Editor ed = mPrefs.edit(); 
+		ed.putInt("gold", mGame.getGold()); 
+		ed.putInt("lives", mGame.getLives()); 
+		ed.commit(); 
+		hasPreferences = true;
 		board.pause();
+		
 	}
 
 	public void updateViews(){
@@ -128,6 +157,10 @@ public class TowerGame extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		if(hasPreferences){
+			mGame.resetGold(mPrefs.getInt("gold", 1234));
+			mGame.setLives(mPrefs.getInt("lives", 1234));
+		}
 		board.resume();
 	}
 
