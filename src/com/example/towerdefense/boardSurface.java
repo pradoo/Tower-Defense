@@ -30,7 +30,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 	public static final int BROWN = Color.rgb(150, 75, 0);
 	public static final int RUDDY_BROWN = Color.rgb(187, 101, 40);
 	public static final int BURNT_ORANGE = Color.rgb(207, 83, 0);
-	public static final int DESERT_SAND = Color.rgb(237, 201, 175);
+	public static final int Green = Color.rgb(32, 104, 3);
 	public static final int BUFF = Color.rgb(240, 220, 130);
 
 	private long prevTime = System.currentTimeMillis();
@@ -85,7 +85,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 
 			//this locks the canvas so that no other thread can draw to it execpt for this one
 			Canvas canvas = holder.lockCanvas();
-
+			canvas.drawColor(Color.rgb(80, 208, 80));
 			drawBoard(canvas);
 			drawPath(canvas);
 			drawTowers(canvas);
@@ -177,14 +177,14 @@ public class boardSurface extends SurfaceView implements Runnable{
 	}
 
 	public void drawBoard(Canvas canvas){
-		LinearGradient lg;
-		lg = new LinearGradient(0,0,0,canvas.getHeight(),BROWN,DESERT_SAND,Shader.TileMode.MIRROR);
-		mPaint.setShader(lg);
-		canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),mPaint);
-		/*
+//		LinearGradient lg;
+//		lg = new LinearGradient(0,0,0,canvas.getHeight(),Green,Green,Shader.TileMode.MIRROR);
+//		mPaint.setShader(lg);
+//		canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),mPaint);
+	
 		int boardWidth = canvas.getWidth();
 		int boardHeight = canvas.getHeight();
-		mPaint.setColor(Color.BLACK);        
+		mPaint.setColor(Color.rgb(2, 74, 0));        
 		mPaint.setStrokeWidth(5);
 		
 		int cellWidth = (boardWidth / BOARD_WIDTH);
@@ -196,7 +196,7 @@ public class boardSurface extends SurfaceView implements Runnable{
 		for(int i = 0; i <= BOARD_HEIGHT; ++i){
 			canvas.drawLine(0, i * cellHeight, boardWidth, i * cellHeight, mPaint);
 		}
-		*/
+		
 	}
 
 	public void drawEnemies(Canvas canvas){
