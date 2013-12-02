@@ -38,7 +38,6 @@ public class TowerGame extends Activity {
 	private TextView level_num;
 	private TextView lives;
 	private boolean soundOn = true;
-	private boolean hasPreferences;
 	
 	private SoundPool sounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
 	private HashMap<Integer, Integer> soundMap;
@@ -73,7 +72,6 @@ public class TowerGame extends Activity {
 		
 
 		mPrefs = getSharedPreferences("td_prefs", MODE_PRIVATE);
-		hasPreferences=mPrefs.contains("gold");	
 		mGame.setAct(this);
 
 		
@@ -102,7 +100,6 @@ public class TowerGame extends Activity {
 		 ed.putInt("gold", mGame.getGold()); 
 		 ed.putInt("lives", mGame.getLives()); 
 		 ed.commit(); 
-		 hasPreferences = true;
 	}
 	public void startnewgame(){
 		running = false;
@@ -121,7 +118,7 @@ public class TowerGame extends Activity {
 			ed.clear();
 			ed.commit();
 		}
-		mGame.resetGold(mPrefs.getInt("gold", 1000));
+		mGame.resetGold(mPrefs.getInt("gold", level.getGold()));
 		mGame.setLives(mPrefs.getInt("lives", 20));
 		if(mGame.getGold() < 200){
 			mGame.resetGold(200);
@@ -147,7 +144,6 @@ public class TowerGame extends Activity {
 		ed.putInt("gold", mGame.getGold()); 
 		ed.putInt("lives", mGame.getLives()); 
 		ed.commit(); 
-		hasPreferences = true;
 		board.pause();
 		
 	}
@@ -162,10 +158,8 @@ public class TowerGame extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(hasPreferences){
-			mGame.resetGold(mPrefs.getInt("gold", 1234));
-			mGame.setLives(mPrefs.getInt("lives", 1234));
-		}
+		mGame.resetGold(mPrefs.getInt("gold", mGame.getGold()));
+		mGame.setLives(mPrefs.getInt("lives", mGame.getLives()));		
 		board.resume();
 	}
 
