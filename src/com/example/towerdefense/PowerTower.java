@@ -25,7 +25,7 @@ public class PowerTower extends AbsTower{
 		mPaint.setStrokeWidth(5);
 		float cellHeight =  canvas.getHeight() / boardSurface.BOARD_HEIGHT;
 		float cellWidth = canvas.getWidth() / boardSurface.BOARD_WIDTH;
-		float radius = Math.min(cellHeight,cellWidth) / 2;
+		float radius = Math.min(cellHeight,cellWidth) / 3;
 		canvas.drawCircle(position[0], position[1], radius, mPaint);
 	}
 

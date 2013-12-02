@@ -3,8 +3,7 @@ package com.example.towerdefense;
 import java.util.HashMap;
 
 import Levels.AbsLevel;
-import Levels.Level;
-import Levels.Level2;
+import Levels.*;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -100,6 +99,8 @@ public class TowerGame extends Activity {
 			level = new Level(mGame, boardheight,boardwidth);
 		if(numlevel == 2)
 			level = new Level2(mGame, boardheight,boardwidth);
+		if(numlevel == 3)
+			level = new Level3(mGame, boardheight,boardwidth);
 		mGame.resetGold(level.getGold());		
 		mGame.setLevel(level);
 		level_num.setText("Level " + numlevel);						

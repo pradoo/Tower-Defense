@@ -51,6 +51,11 @@ public class LevelPickActivity extends Activity implements OnClickListener{
 			i.putExtra("level", 2);
 			startActivity(i);
 			break;
+		case R.id.level3:
+			i = new Intent(this, TowerGame.class);
+			i.putExtra("level", 3);
+			startActivity(i);
+			break;
 		}
 	}
 
