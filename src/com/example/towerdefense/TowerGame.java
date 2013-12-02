@@ -116,13 +116,18 @@ public class TowerGame extends Activity {
 			level = new Level2(mGame, boardheight,boardwidth);
 		if(numlevel == 3)
 			level = new Level3(mGame, boardheight,boardwidth);
-		if(hasPreferences){
-			mGame.setSaved(true);
-			mGame.resetGold(mPrefs.getInt("gold", 1234));
-			mGame.setLives(mPrefs.getInt("lives", 1234));
-		}else{
-			mGame.resetGold(level.getGold());	
-		}	
+		if(mGame.getLives() <= 0){
+			SharedPreferences.Editor ed = mPrefs.edit();
+			ed.clear();
+			ed.commit();
+		}
+		mGame.resetGold(mPrefs.getInt("gold", 1000));
+		mGame.setLives(mPrefs.getInt("lives", 20));
+		if(mGame.getGold() < 200){
+			mGame.resetGold(200);
+		}
+		
+		
 		mGame.setLevel(level);
 		
 		level_num.setText("Level " + numlevel);						
