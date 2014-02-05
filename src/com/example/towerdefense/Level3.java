@@ -1,11 +1,6 @@
-package Levels;
+package com.example.towerdefense;
 
 import java.util.ArrayList;
-
-import com.example.towerdefense.AbsEnemy;
-import com.example.towerdefense.EnemyCircle;
-import com.example.towerdefense.TankEnemy;
-import com.example.towerdefense.TowerGameLogic;
 
 public class Level3 extends AbsLevel{
 

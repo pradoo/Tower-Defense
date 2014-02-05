@@ -2,7 +2,6 @@ package com.example.towerdefense;
 
 import java.util.HashMap;
 
-import Levels.*;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -48,7 +47,7 @@ public class TowerGame extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.d(LOG_TAG,"OnCreate");
+		Log.i(LOG_TAG,"onCreate");
 		super.onCreate(savedInstanceState); 
 		setContentView(R.layout.activity_tower_game);
 		numlevel = getIntent().getExtras().getInt("level");
@@ -81,7 +80,6 @@ public class TowerGame extends Activity {
 				new OnGlobalLayoutListener(){
 					@Override
 					public void onGlobalLayout() {
-
 						boardheight = board.getBoardCellHeight();
 						boardwidth = board.getBoardCellWidth();					
 						Bullet.boardheight = board.getHeight();
@@ -102,10 +100,9 @@ public class TowerGame extends Activity {
 		 ed.commit(); 
 	}
 	public void startnewgame(){
-		running = false;
 		
-		board.setFirstRun(true);
-		
+		running = false;		
+		board.setFirstRun(true);		
 		mGame.clear();
 		if(numlevel == 1)
 			level = new Level(mGame, boardheight,boardwidth);

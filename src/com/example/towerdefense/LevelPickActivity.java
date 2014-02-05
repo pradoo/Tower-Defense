@@ -17,6 +17,7 @@ public class LevelPickActivity extends Activity implements OnClickListener{
 	private static int[] ids = {R.id.level1, R.id.level2, R.id.level3};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.i(LOG_TAG,"onCreate()");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_level_pick);
 
@@ -29,6 +30,7 @@ public class LevelPickActivity extends Activity implements OnClickListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.i(LOG_TAG,"onCreateOptionsMenu()");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.level_pick, menu);
 		return true;

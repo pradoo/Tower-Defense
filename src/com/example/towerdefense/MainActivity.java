@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity implements OnClickListener{
+public class MainActivity extends Activity implements OnClickListener{	
 	private static final String LOG_TAG = "MainActivity_tag";
 	private static int[] ids = {R.id.play};
 	@Override

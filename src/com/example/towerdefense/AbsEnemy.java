@@ -82,11 +82,11 @@ public abstract class AbsEnemy extends  Drawable{
 		if(inst.isEmpty()){
 			mGame.decLives();
 			mGame.playSound(R.raw.loselife, 1);
-			mGame.removeEnemey(this);
+			mGame.removeEnemy(this);
 		}
 		else if(health <= 0){
 			mGame.setGold(gold);
-			mGame.removeEnemey(this);
+			mGame.removeEnemy(this);
 		} 
 		else if(inst.peek()[2] == 1){
 			if(position[inst.peek()[0]] < inst.peek()[1]){

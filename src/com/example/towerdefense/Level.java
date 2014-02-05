@@ -1,4 +1,4 @@
-package Levels;
+package com.example.towerdefense;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -7,11 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
 
-import com.example.towerdefense.AbsEnemy;
-import com.example.towerdefense.EnemyCircle;
-import com.example.towerdefense.R;
-import com.example.towerdefense.TankEnemy;
-import com.example.towerdefense.TowerGameLogic;
 
 public class Level extends AbsLevel{
 	
