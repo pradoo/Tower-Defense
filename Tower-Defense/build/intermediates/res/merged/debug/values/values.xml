@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="dark_green">#00A550</color>
+    <color name="white">#FFFFFF</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Tower Defense</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="level1">Level 1</string>
+    <string name="level2">Level 2</string>
+    <string name="level3">Level 3</string>
+    <string name="levelpick">Pick A Level</string>
+    <string name="load_game">Continue</string>
+    <string name="new_game">New Game</string>
+    <string name="newgame">New Game</string>
+    <string name="play">Play</string>
+    <string name="sound">Sound</string>
+    <string name="title_activity_level_pick">LevelPickActivity</string>
+    <string name="title_activity_tower_game">TowerGame</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

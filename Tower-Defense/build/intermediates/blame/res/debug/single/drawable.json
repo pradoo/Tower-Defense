@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/drawable/new_game.png",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/drawable/new_game.png"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/drawable/home_screen.jpg",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/drawable/home_screen.jpg"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/drawable/sound.png",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/drawable/sound.png"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/layout-land/activity_level_pick.xml",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/layout-land/activity_level_pick.xml"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/layout-land/activity_tower_game.xml",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/layout-land/activity_tower_game.xml"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/layout-land/activity_main.xml",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/layout-land/activity_main.xml"
+    }
+]

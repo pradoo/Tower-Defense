@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/raw/enemystart.wav",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/raw/enemystart.wav"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/raw/loselife.wav",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/raw/loselife.wav"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/raw/lazer.wav",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/raw/lazer.wav"
+    },
+    {
+        "merged": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/build/intermediates/res/merged/debug/raw/bulletsound.wav",
+        "source": "/Users/jprado/Documents/research/Tower-Defense/Tower-Defense/src/main/res/raw/bulletsound.wav"
+    }
+]
